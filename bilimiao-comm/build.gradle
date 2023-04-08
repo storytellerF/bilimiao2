@@ -1,3 +1,4 @@
+import org.apache.tools.ant.taskdefs.condition.Os
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
@@ -39,15 +40,17 @@ android {
             }
         }
     }
+    namespace 'com.a10miaomiao.bilimiao.comm'
 }
+def archSuffix = Os.isFamily(Os.FAMILY_MAC) ? ':osx-x86_64' : ''
 
 protobuf {
-    protoc { artifact = 'com.google.protobuf:protoc:3.12.0' } // 相当于proto编译器
+    protoc { artifact = 'com.google.protobuf:protoc:3.22.2' } // 相当于proto编译器
     plugins {
-        grpc { artifact = 'io.grpc:protoc-gen-grpc-java:1.33.0' } // Grpc单独的编译器
+        grpc { artifact = 'io.grpc:protoc-gen-grpc-java:1.54.0' } // Grpc单独的编译器
 
         javalite {
-            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+            artifact = "com.google.protobuf:protoc-gen-javalite:3.0.0:$archSuffix"
             // 官方推荐的方法，Android 适用javalite,相较于java插件，生成的代码更轻量化
         }
     }
@@ -80,8 +83,8 @@ dependencies {
     implementation "com.google.code.gson:gson:$gson_version"
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
 
-    implementation 'io.grpc:grpc-protobuf-lite:1.33.0'
-    implementation 'io.grpc:grpc-stub:1.33.0'
+    implementation 'io.grpc:grpc-protobuf-lite:1.49.2'
+    implementation 'io.grpc:grpc-stub:1.49.2'
     implementation 'javax.annotation:javax.annotation-api:1.2'
 
     // 极验验证
