@@ -1,5 +1,6 @@
 import com.google.protobuf.gradle.*
 import cn.a10miaomiao.bilimiao.build.*
+import org.apache.tools.ant.taskdefs.condition.Os
 
 plugins {
     id("com.android.library")
@@ -42,25 +43,28 @@ android {
         srcDir("src/main/proto") // 模块下的proto文件夹
         include("**/*.proto")
     }
+    namespace = "com.a10miaomiao.bilimiao.comm"
 }
+
+val archSuffix = if (Os.isFamily(Os.FAMILY_MAC)) ":osx-x86_64" else ""
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:3.12.0"  // 相当于proto编译器
+        artifact = "com.google.protobuf:protoc:3.22.2"  // 相当于proto编译器
     }
     plugins {
         id("grpc") {
-            artifact = "io.grpc:protoc-gen-grpc-java:1.33.0" // Grpc单独的编译器
+            artifact = "io.grpc:protoc-gen-grpc-java:1.54.0" // Grpc单独的编译器
         }
         id("javalite") {
-            artifact = "com.google.protobuf:protoc-gen-javalite:3.0.0"
+            artifact = "com.google.protobuf:protoc-gen-javalite:3.0.0$archSuffix"
             // 官方推荐的方法，Android 适用javalite,相较于java插件，生成的代码更轻量化
         }
     }
     generateProtoTasks {
         all().forEach {
             it.builtins {
-                if (contains(java)) {
+                if (findByName("java") != null) {
                     named("java") {
                         option("lite")
                     }

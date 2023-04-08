@@ -53,8 +53,8 @@ object Libraries {
     const val kodeinDiCompose = "org.kodein.di:kodein-di-framework-compose:${Versions.kodein_di}"
     const val gson = "com.google.code.gson:gson:${Versions.gson}"
     const val okhttp3 = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
-    const val grpcProtobuf = "io.grpc:grpc-protobuf-lite:1.33.0"
-    const val grpcStub = "io.grpc:grpc-stub:1.33.0"
+    const val grpcProtobuf = "io.grpc:grpc-protobuf-lite:1.49.2"
+    const val grpcStub = "io.grpc:grpc-stub:1.49.2"
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
 
