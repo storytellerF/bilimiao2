@@ -145,6 +145,13 @@ class UserApi {
             "view_at" to viewAt.toString(),
         )
     }
+    fun toBePlay(): MiaoHttp {
+        return MiaoHttp.request {
+            url = BiliApiService.biliApi(
+                "x/v2/history/toview"
+            )
+        }
+    }
 
     /**
      * 关注Up主
