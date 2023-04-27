@@ -1,27 +1,27 @@
 package tv.cjump.jni;
 
 import android.app.ActivityManager;
-import android.app.Instrumentation;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Debug;
-import master.flame.danmaku.danmaku.util.SystemClock;
-import android.test.InstrumentationTestCase;
 import android.util.Log;
 
+import androidx.test.platform.app.InstrumentationRegistry;
+
 import junit.framework.Assert;
-import junit.framework.TestCase;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
+import master.flame.danmaku.danmaku.util.SystemClock;
+
 /**
  * Created by ch on 15-6-12.
  */
-public class NativeBitmapFactoryTest extends InstrumentationTestCase {
+public class NativeBitmapFactoryTest {
 
     private static final int DEFAULT_MESSAGE_SIZE = 1024;
     private static final int BYTES_IN_MEGABYTE = 1024 * 1024;
@@ -71,8 +71,8 @@ public class NativeBitmapFactoryTest extends InstrumentationTestCase {
         gcAndWait();
     }
 
-    public Context getContext(){
-        return getInstrumentation().getTargetContext();
+    public Context getContext() {
+        return InstrumentationRegistry.getInstrumentation().getTargetContext();
     }
 
     private void updateHeapValue(StringBuilder sb) {
