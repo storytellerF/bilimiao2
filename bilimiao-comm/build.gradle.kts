@@ -93,6 +93,8 @@ dependencies {
     implementation(Libraries.kotlinxCoroutinesAndroid)
     implementation(Libraries.kodeinDi)
     implementation(Libraries.glide)
+    implementation(Libraries.dialogX)
+    implementation(Libraries.dialogXMaterialYou)
 
     implementation(Libraries.gson)
     implementation(Libraries.okhttp3)
