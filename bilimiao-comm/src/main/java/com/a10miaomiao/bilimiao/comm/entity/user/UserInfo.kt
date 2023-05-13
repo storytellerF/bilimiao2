@@ -25,7 +25,7 @@ data class UserInfo (
     var mid: Long,
     var name: String,
     var face: String,
-    val sign: String,
+    val sign: String?,
     var coin: Double,
     var bcoin: Double,
     var sex: Int,
