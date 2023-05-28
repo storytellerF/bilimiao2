@@ -9,7 +9,7 @@ import androidx.lifecycle.OnLifecycleEvent
 class MyPageConfig(
     private val fragment: Fragment,
     private val getConfigInfo: (() -> MyPageConfigInfo),
-): LifecycleObserver {
+) : LifecycleObserver {
 
     var setConfig: ((MyPageConfigInfo) -> Unit)? = null
 
@@ -36,7 +36,7 @@ class MyPageConfig(
         notifyConfigChanged()
     }
 
-    fun notifyConfigChanged () {
+    fun notifyConfigChanged() {
         if (fragment.lifecycle.currentState == Lifecycle.State.RESUMED) {
             setConfig?.let {
                 it(configInfo)

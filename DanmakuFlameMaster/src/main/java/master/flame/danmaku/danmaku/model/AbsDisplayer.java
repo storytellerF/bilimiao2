@@ -3,9 +3,9 @@ package master.flame.danmaku.danmaku.model;
 import master.flame.danmaku.danmaku.model.android.BaseCacheStuffer;
 
 public abstract class AbsDisplayer<T, F> implements IDisplayer {
-    
+
     public abstract T getExtraData();
-    
+
     public abstract void setExtraData(T data);
 
     @Override
@@ -25,7 +25,7 @@ public abstract class AbsDisplayer<T, F> implements IDisplayer {
 
     public abstract void setScaleTextSizeFactor(float factor);
 
-    public abstract void setCacheStuffer(BaseCacheStuffer cacheStuffer);
-
     public abstract BaseCacheStuffer getCacheStuffer();
+
+    public abstract void setCacheStuffer(BaseCacheStuffer cacheStuffer);
 }

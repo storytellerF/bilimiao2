@@ -8,6 +8,6 @@ message ModResourceResp {}
 
 // ModManager
 service ModManager {
-    //
-    rpc WatchResource(google.protobuf.Empty) returns (stream ModResourceResp);
+  //
+  rpc WatchResource(google.protobuf.Empty) returns (stream ModResourceResp);
 }

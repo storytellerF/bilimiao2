@@ -1,4 +1,3 @@
-
 package master.flame.danmaku.danmaku.model.android;
 
 import master.flame.danmaku.danmaku.model.objectpool.PoolableManager;

@@ -9,7 +9,8 @@ class ArticleAPI {
      * 专栏信息
      */
     fun info(id: String) = MiaoHttp.request {
-        url = BiliApiService.biliApi("x/article/viewinfo",
+        url = BiliApiService.biliApi(
+            "x/article/viewinfo",
             "id" to id,
         )
     }

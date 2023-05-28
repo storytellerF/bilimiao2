@@ -17,18 +17,18 @@ message ModuleAuthor {
   // 点击跳转链接
   string uri = 5;
   // 右侧操作区域 - 三点样式
-//  repeated ThreePointItem tp_list = 6;
+  //  repeated ThreePointItem tp_list = 6;
   // 右侧操作区域样式枚举
-//  ModuleAuthorBadgeType badge_type = 7;
+  //  ModuleAuthorBadgeType badge_type = 7;
   // 右侧操作区域 - 按钮样式
-//  ModuleAuthorBadgeButton badge_button = 8;
+  //  ModuleAuthorBadgeButton badge_button = 8;
   // 是否关注
   // 1:关注 0:不关注 默认0，注：点赞列表使用，其他场景不使用该字段
   int32 attend = 9;
   // 关注状态
-//  Relation relation = 10;
+  //  Relation relation = 10;
   // 右侧操作区域 - 提权样式
-//  Weight weight = 11;
+  //  Weight weight = 11;
   // 是否展示关注
   bool show_follow = 12;
   // 是否置顶
@@ -188,9 +188,9 @@ message ModuleAuthorForward {
   // 源up主头像
   string face_url = 6;
   // 双向关系
-//  Relation relation = 7;
+  //  Relation relation = 7;
   // 右侧操作区域 - 三点样式
-//  repeated ThreePointItem tp_list = 8;
+  //  repeated ThreePointItem tp_list = 8;
 }
 
 // 动态列表-用户模块-转发模板-title部分

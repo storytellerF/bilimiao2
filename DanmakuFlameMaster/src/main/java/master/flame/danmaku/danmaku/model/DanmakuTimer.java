@@ -43,6 +43,8 @@ public class DanmakuTimer {
         return lastInterval;
     }
 
-    public long currMillisecond() { return currMillisecond; }
+    public long currMillisecond() {
+        return currMillisecond;
+    }
 
 }

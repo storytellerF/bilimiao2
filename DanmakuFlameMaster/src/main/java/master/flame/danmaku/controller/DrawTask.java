@@ -35,35 +35,21 @@ import master.flame.danmaku.danmaku.util.SystemClock;
 public class DrawTask implements IDrawTask {
 
     protected final DanmakuContext mContext;
-    
+
     protected final AbsDisplayer mDisp;
-
-    protected IDanmakus danmakuList;
-
-    protected BaseDanmakuParser mParser;
-
-    TaskListener mTaskListener;
-
     final IRenderer mRenderer;
-
-    DanmakuTimer mTimer;
-
-    private IDanmakus danmakus = new Danmakus(Danmakus.ST_BY_LIST);
-
-    protected boolean clearRetainerFlag;
-
-    private long mStartRenderTime = 0;
-
     private final RenderingState mRenderingState = new RenderingState();
-
+    protected IDanmakus danmakuList;
+    protected BaseDanmakuParser mParser;
+    protected boolean clearRetainerFlag;
     protected boolean mReadyState;
-
-    private long mLastBeginMills;
-
-    private long mLastEndMills;
-
     protected int mPlayState;
-
+    TaskListener mTaskListener;
+    DanmakuTimer mTimer;
+    private IDanmakus danmakus = new Danmakus(Danmakus.ST_BY_LIST);
+    private long mStartRenderTime = 0;
+    private long mLastBeginMills;
+    private long mLastEndMills;
     private boolean mIsHidden;
 
     private BaseDanmaku mLastDanmaku;
@@ -82,7 +68,7 @@ public class DrawTask implements IDrawTask {
     };
 
     public DrawTask(DanmakuTimer timer, DanmakuContext context,
-            TaskListener taskListener) {
+                    TaskListener taskListener) {
         if (context == null) {
             throw new IllegalArgumentException("context is null");
         }
@@ -103,7 +89,7 @@ public class DrawTask implements IDrawTask {
         initTimer(timer);
         Boolean enable = mContext.isDuplicateMergingEnabled();
         if (enable != null) {
-            if(enable) {
+            if (enable) {
                 mContext.mDanmakuFilters.registerFilter(DanmakuFilters.TAG_DUPLICATE_FILTER);
             } else {
                 mContext.mDanmakuFilters.unregisterFilter(DanmakuFilters.TAG_DUPLICATE_FILTER);
@@ -253,7 +239,7 @@ public class DrawTask implements IDrawTask {
 
     @Override
     public synchronized RenderingState draw(AbsDisplayer displayer) {
-        return drawDanmakus(displayer,mTimer);
+        return drawDanmakus(displayer, mTimer);
     }
 
     @Override
@@ -332,7 +318,7 @@ public class DrawTask implements IDrawTask {
             }
         }).getDanmakus();
         mContext.mGlobalFlagValues.resetAll();
-        if(danmakuList != null) {
+        if (danmakuList != null) {
             mLastDanmaku = danmakuList.last();
         }
     }
@@ -360,7 +346,7 @@ public class DrawTask implements IDrawTask {
             long beginMills = timer.currMillisecond() - mContext.mDanmakuFactory.MAX_DANMAKU_DURATION - 100;
             long endMills = timer.currMillisecond() + mContext.mDanmakuFactory.MAX_DANMAKU_DURATION;
             IDanmakus screenDanmakus = danmakus;
-            if(mLastBeginMills > beginMills || timer.currMillisecond() > mLastEndMills) {
+            if (mLastBeginMills > beginMills || timer.currMillisecond() > mLastEndMills) {
                 screenDanmakus = danmakuList.sub(beginMills, endMills);
                 if (screenDanmakus != null) {
                     danmakus = screenDanmakus;
@@ -386,7 +372,7 @@ public class DrawTask implements IDrawTask {
                 mRenderer.draw(mDisp, screenDanmakus, mStartRenderTime, renderingState);
                 endTracing(renderingState);
                 if (renderingState.nothingRendered) {
-                    if(mLastDanmaku != null && mLastDanmaku.isTimeOut()) {
+                    if (mLastDanmaku != null && mLastDanmaku.isTimeOut()) {
                         mLastDanmaku = null;
                         if (mTaskListener != null) {
                             mTaskListener.onDanmakusDrawingFinished();
@@ -444,7 +430,7 @@ public class DrawTask implements IDrawTask {
     }
 
     public boolean onDanmakuConfigChanged(DanmakuContext config, DanmakuConfigTag tag,
-            Object... values) {
+                                          Object... values) {
         boolean handled = handleOnDanmakuConfigChanged(config, tag, values);
         if (mTaskListener != null) {
             mTaskListener.onDanmakuConfigChanged();

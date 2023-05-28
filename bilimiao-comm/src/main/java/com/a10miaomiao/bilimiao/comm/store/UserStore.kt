@@ -24,7 +24,7 @@ import java.io.File
 class UserStore(override val di: DI) :
     ViewModel(), BaseStore<UserStore.State> {
 
-    data class State (
+    data class State(
         var info: UserInfo? = null
     )
 
@@ -35,7 +35,7 @@ class UserStore(override val di: DI) :
 
     override fun init(context: Context) {
         super.init(context)
-        if (BilimiaoCommApp.commApp.loginInfo != null)  {
+        if (BilimiaoCommApp.commApp.loginInfo != null) {
             readUserInfo()
             loadInfo()
         }
@@ -48,7 +48,7 @@ class UserStore(override val di: DI) :
         seveUserInfo(userInfo)
     }
 
-    fun logout () {
+    fun logout() {
         BilimiaoCommApp.commApp.deleteAuth()
         setUserInfo(null)
     }

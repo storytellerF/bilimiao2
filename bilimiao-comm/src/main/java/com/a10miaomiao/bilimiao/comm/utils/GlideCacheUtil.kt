@@ -62,7 +62,8 @@ object GlideCacheUtil {
      * @return CacheSize
      */
     fun getCacheSize(context: Context): String {
-        val cacheFile = File(context.cacheDir.absolutePath + "/" + InternalCacheDiskCacheFactory.DEFAULT_DISK_CACHE_DIR)
+        val cacheFile =
+            File(context.cacheDir.absolutePath + "/" + InternalCacheDiskCacheFactory.DEFAULT_DISK_CACHE_DIR)
         val folderSize = getFolderSize(cacheFile)
         return formatSize(folderSize)
     }

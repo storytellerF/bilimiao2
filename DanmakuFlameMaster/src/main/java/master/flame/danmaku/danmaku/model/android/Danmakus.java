@@ -176,7 +176,7 @@ public class Danmakus implements IDanmakus {
             return null;
         }
         if (subItems == null) {
-            if(mSortType == ST_BY_LIST) {
+            if (mSortType == ST_BY_LIST) {
                 subItems = new Danmakus(Danmakus.ST_BY_LIST);
                 subItems.mLockObject = this.mLockObject;
                 synchronized (this.mLockObject) {

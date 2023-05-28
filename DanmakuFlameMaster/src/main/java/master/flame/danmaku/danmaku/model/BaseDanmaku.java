@@ -40,182 +40,144 @@ public abstract class BaseDanmaku {
 
     public final static int FLAG_REQUEST_REMEASURE = 0x1;
     public final static int FLAG_REQUEST_INVALIDATE = 0x2;
-
-    /**
-     * 显示时间(毫秒)
-     */
-    private long time;
-
     /**
      * 偏移时间
      */
     public long timeOffset;
-
     /**
      * 文本
      */
     public CharSequence text;
-
     /**
      * 多行文本: 如果有包含换行符需事先拆分到lines
      */
     public String[] lines;
-
     /**
      * 保存一些数据的引用(库内部使用, 外部使用请用tag)
      */
     public Object obj;
-
     /**
      * 可保存一些自定义数据的引用(外部使用).
      * 除非主动set null,否则不会自动释放引用.
      * 确定你会主动set null, 否则不要使用这个字段引用大内存的对象实例.
      */
     public Object tag;
-
     /**
      * 文本颜色
      */
     public int textColor;
-
     /**
      * Z轴角度
      */
     public float rotationZ;
-
     /**
      * Y轴角度
      */
     public float rotationY;
-
     /**
      * 阴影/描边颜色
      */
     public int textShadowColor;
-
     /**
      * 下划线颜色,0表示无下划线
      */
     public int underlineColor = 0;
-
     /**
      * 字体大小
      */
     public float textSize = -1;
-
     /**
      * 框的颜色,0表示无框
      */
     public int borderColor = 0;
-
     /**
      * 内边距(像素)
      */
     public int padding = 0;
-
     /**
      * 弹幕优先级,0为低优先级,>0为高优先级不会被过滤器过滤
      */
     public byte priority = 0;
-
     /**
      * 占位宽度
      */
     public float paintWidth = -1;
-
     /**
      * 占位高度
      */
     public float paintHeight = -1;
-
     /**
      * 存活时间(毫秒)
      */
     public Duration duration;
-
     /**
      * 索引/编号
      */
     public int index;
-
     /**
      * 是否可见
      */
     public int visibility;
-
-    /**
-     * 重置位 visible
-     */
-    private int visibleResetFlag = 0;
-
     /**
      * 重置位 measure
      */
     public int measureResetFlag = 0;
-
     /**
      * 重置位 offset time
      */
     public int syncTimeOffsetResetFlag = 0;
-
     /**
      * 重置位 prepare
      */
     public int prepareResetFlag = -1;
-
     /**
      * 绘制用缓存
      */
     public IDrawingCache<?> cache;
-
     /**
      * 是否是直播弹幕
      */
     public boolean isLive;
-
     /**
      * 临时, 是否在同线程创建缓存
      */
     public boolean forceBuildCacheInSameThread;
-
     /**
      * 弹幕发布者id, 0表示游客
      */
     public int userId = 0;
-
     /**
      * 弹幕发布者id
      */
     public String userHash;
-
     /**
      * 是否游客
      */
     public boolean isGuest;
-
-    /**
-     * 计时
-     */
-    protected DanmakuTimer mTimer;
-
-    /**
-     * 透明度
-     */
-    protected int alpha = AlphaValue.MAX;
-
     public int mFilterParam = 0;
-
     public int filterResetFlag = -1;
-
     public GlobalFlagValues flags = null;
-
     public int requestFlags = 0;
-
     /**
      * 标记是否首次显示，首次显示后将置为FIRST_SHOWN_RESET_FLAG
      */
     public int firstShownFlag = -1;
-
+    /**
+     * 计时
+     */
+    protected DanmakuTimer mTimer;
+    /**
+     * 透明度
+     */
+    protected int alpha = AlphaValue.MAX;
+    /**
+     * 显示时间(毫秒)
+     */
+    private long time;
+    /**
+     * 重置位 visible
+     */
+    private int visibleResetFlag = 0;
     private SparseArray<Object> mTags = new SparseArray<>();
 
     public long getDuration() {
@@ -355,13 +317,13 @@ public abstract class BaseDanmaku {
         this.syncTimeOffsetResetFlag = flags.SYNC_TIME_OFFSET_RESET_FLAG;
     }
 
+    public long getTime() {
+        return time;
+    }
+
     public void setTime(long time) {
         this.time = time;
         this.timeOffset = 0;
-    }
-
-    public long getTime() {
-        return time;
     }
 
     public long getActualTime() {

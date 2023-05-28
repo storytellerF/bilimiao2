@@ -6,13 +6,13 @@ import "google/protobuf/empty.proto";
 
 //
 service Fission {
-    //
-    rpc GameNotify(google.protobuf.Empty) returns (stream GameNotifyReply);
+  //
+  rpc GameNotify(google.protobuf.Empty) returns (stream GameNotifyReply);
 }
 
 message GameNotifyReply {
-    // 类型字段
-    uint32 type = 1;
-    // 数据字段
-    string data = 2;
+  // 类型字段
+  uint32 type = 1;
+  // 数据字段
+  string data = 2;
 }

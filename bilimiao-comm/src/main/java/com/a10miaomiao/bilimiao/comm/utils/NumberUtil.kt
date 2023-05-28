@@ -11,7 +11,7 @@ object NumberUtil {
         }
         var unit = "万"
         var newNum = num / 10000.0
-        if (num > 9999_9999){
+        if (num > 9999_9999) {
             unit = "亿"
             newNum = num / 10000_0000.0
         }
@@ -25,7 +25,7 @@ object NumberUtil {
         }
         var unit = "万"
         var newNum = num / 10000.0
-        if (num > 9999_9999){
+        if (num > 9999_9999) {
             unit = "亿"
             newNum = num / 10000_0000.0
         }
@@ -51,6 +51,7 @@ object NumberUtil {
             min = "0$min"
         return "$min:$s"
     }
+
     fun converDuration(duration: Int): String {
         var s = (duration % 60).toString()
         var min = (duration / 60).toString()
@@ -73,6 +74,7 @@ object NumberUtil {
                 val sf = SimpleDateFormat("yyyy-MM-dd HH:mm")
                 sf.format(date)
             }
+
             deltime > 24 * 60 * 60 -> (deltime / (24 * 60 * 60)).toInt().toString() + "天前"
             deltime > 60 * 60 -> (deltime / (60 * 60)).toInt().toString() + "小时前"
             deltime > 60 -> (deltime / 60).toInt().toString() + "分钟前"

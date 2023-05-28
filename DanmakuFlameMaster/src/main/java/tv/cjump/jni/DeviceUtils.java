@@ -1,4 +1,3 @@
-
 package tv.cjump.jni;
 
 import android.os.Build;
@@ -17,18 +16,12 @@ public class DeviceUtils {
     public static final String ABI_X86 = "x86";
 
     public static final String ABI_MIPS = "mips";
-
-    public static enum ARCH {
-        Unknown, ARM, X86, MIPS, ARM64,
-    }
-
-    private static ARCH sArch = ARCH.Unknown;
-
     // see include/​uapi/​linux/​elf-em.h
     private static final int EM_ARM = 40;
     private static final int EM_386 = 3;
     private static final int EM_MIPS = 8;
     private static final int EM_AARCH64 = 183;
+    private static ARCH sArch = ARCH.Unknown;
 
     // /system/lib/libc.so
     // XXX: need a runtime check
@@ -125,14 +118,14 @@ public class DeviceUtils {
         String manufacturer = Build.MANUFACTURER;
         String productName = Build.PRODUCT;
         return manufacturer.equalsIgnoreCase("Xiaomi")
-            && productName.equalsIgnoreCase("dredd");
+                && productName.equalsIgnoreCase("dredd");
     }
 
     public static boolean isMagicBoxDevice() {
         String manufacturer = Build.MANUFACTURER;
         String productName = Build.PRODUCT;
         return manufacturer.equalsIgnoreCase("MagicBox")
-            && productName.equalsIgnoreCase("MagicBox");
+                && productName.equalsIgnoreCase("MagicBox");
     }
 
     public static boolean isProblemBoxDevice() {
@@ -147,6 +140,10 @@ public class DeviceUtils {
     public static boolean isRealX86Arch() {
         ARCH arch = getMyCpuArch();
         return supportABI(ABI_X86) || ARCH.X86.equals(arch);
+    }
+
+    public static enum ARCH {
+        Unknown, ARM, X86, MIPS, ARM64,
     }
 
 }

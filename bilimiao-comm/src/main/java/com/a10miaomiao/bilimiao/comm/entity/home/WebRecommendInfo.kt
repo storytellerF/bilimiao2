@@ -1,6 +1,6 @@
 package com.a10miaomiao.bilimiao.comm.entity.home
 
-data class WebRecommendInfo (
+data class WebRecommendInfo(
     val item: List<ItemInfo>,
     val mid: String,
 ) {

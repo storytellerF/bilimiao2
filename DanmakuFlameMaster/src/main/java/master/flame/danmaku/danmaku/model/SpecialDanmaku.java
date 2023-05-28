@@ -18,115 +18,39 @@ package master.flame.danmaku.danmaku.model;
 
 public class SpecialDanmaku extends BaseDanmaku {
 
-    public static class ScaleFactor {
-        int flag = 0;
-        float scaleX;
-        float scaleY;
-        int width;
-        int height;
-
-        public ScaleFactor(int width, int height, float scaleX, float scaleY) {
-            update(width, height, scaleX, scaleY);
-        }
-
-        public void update(int width, int height, float scaleX, float scaleY) {
-            if (Float.compare(this.scaleX, scaleX) != 0 || Float.compare(this.scaleY, scaleY) != 0) {
-                flag++;
-            }
-            this.width = width;
-            this.height = height;
-            this.scaleX = scaleX;
-            this.scaleY = scaleY;
-        }
-
-        public boolean isUpdated(int flag, int width, int height) {
-            return this.flag != flag && (this.width != width || this.height != height);
-        }
-    }
-
-    private class Point {
-        float x, y;
-
-        public Point(float x, float y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public float getDistance(Point p) {
-            float _x = Math.abs(this.x - p.x);
-            float _y = Math.abs(this.y - p.y);
-            return (float) Math.sqrt(_x * _x + _y * _y);
-        }
-    }
-
-    public class LinePath {
-        Point pBegin, pEnd;
-        public long duration, beginTime, endTime;
-        float delatX, deltaY;
-
-        public void setPoints(Point pBegin, Point pEnd) {
-            this.pBegin = pBegin;
-            this.pEnd = pEnd;
-            this.delatX = pEnd.x - pBegin.x;
-            this.deltaY = pEnd.y - pBegin.y;
-        }
-
-        public float getDistance() {
-            return pEnd.getDistance(pBegin);
-        }
-
-        public float[] getBeginPoint() {
-            return new float[]{
-                    pBegin.x, pBegin.y
-            };
-        }
-
-        public float[] getEndPoint() {
-            return new float[]{
-                    pEnd.x, pEnd.y
-            };
-        }
-
-    }
-
     public float beginX, beginY;
-
     public float endX, endY;
-
     public float deltaX, deltaY;
-
     public long translationDuration;
-
     public long translationStartDelay;
-
-    private ScaleFactor mScaleFactor;
-
-    private int mScaleFactorChangedFlag;
-
-    private int mCurrentWidth = 0;
-
-    private int mCurrentHeight = 0;
-
     /**
      * Linear.easeIn or Quadratic.easeOut
      */
     public boolean isQuadraticEaseOut = false;
-
     public int beginAlpha;
-
     public int endAlpha;
-
     public int deltaAlpha;
-
     public long alphaDuration;
-
     public float rotateX, rotateZ;
-
     public float pivotX, pivotY;
-
+    public LinePath[] linePaths;
+    private ScaleFactor mScaleFactor;
+    private int mScaleFactorChangedFlag;
+    private int mCurrentWidth = 0;
+    private int mCurrentHeight = 0;
     private float[] currStateValues = new float[4];
 
-    public LinePath[] linePaths;
+    private final static float getQuadEaseOutProgress(long ctime, long duration) {
+//            Math.easeOutQuad = function (t, b, c, d) {
+//                t /= d;
+//                return -c * t*(t-2) + b;
+//            };
+        float t = ctime;
+//        float b = 0f;
+        float c = 1.0f;
+        float d = duration;
+        return -c * (t /= d) * (t - 2); // + b;
+    }
 
     @Override
     public void measure(IDisplayer displayer, boolean fromWorkerThread) {
@@ -241,18 +165,6 @@ public class SpecialDanmaku extends BaseDanmaku {
         return currStateValues;
     }
 
-    private final static float getQuadEaseOutProgress(long ctime, long duration) {
-//            Math.easeOutQuad = function (t, b, c, d) {
-//                t /= d;
-//                return -c * t*(t-2) + b;
-//            };
-        float t = ctime;
-//        float b = 0f;
-        float c = 1.0f;
-        float d = duration;
-        return -c * (t /= d) * (t - 2); // + b;
-    }
-
     @Override
     public float getLeft() {
         return currStateValues[0];
@@ -333,6 +245,77 @@ public class SpecialDanmaku extends BaseDanmaku {
     public void setScaleFactor(ScaleFactor scaleFactor) {
         this.mScaleFactor = scaleFactor;
         this.mScaleFactorChangedFlag = scaleFactor.flag;
+    }
+
+    public static class ScaleFactor {
+        int flag = 0;
+        float scaleX;
+        float scaleY;
+        int width;
+        int height;
+
+        public ScaleFactor(int width, int height, float scaleX, float scaleY) {
+            update(width, height, scaleX, scaleY);
+        }
+
+        public void update(int width, int height, float scaleX, float scaleY) {
+            if (Float.compare(this.scaleX, scaleX) != 0 || Float.compare(this.scaleY, scaleY) != 0) {
+                flag++;
+            }
+            this.width = width;
+            this.height = height;
+            this.scaleX = scaleX;
+            this.scaleY = scaleY;
+        }
+
+        public boolean isUpdated(int flag, int width, int height) {
+            return this.flag != flag && (this.width != width || this.height != height);
+        }
+    }
+
+    private class Point {
+        float x, y;
+
+        public Point(float x, float y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public float getDistance(Point p) {
+            float _x = Math.abs(this.x - p.x);
+            float _y = Math.abs(this.y - p.y);
+            return (float) Math.sqrt(_x * _x + _y * _y);
+        }
+    }
+
+    public class LinePath {
+        public long duration, beginTime, endTime;
+        Point pBegin, pEnd;
+        float delatX, deltaY;
+
+        public void setPoints(Point pBegin, Point pEnd) {
+            this.pBegin = pBegin;
+            this.pEnd = pEnd;
+            this.delatX = pEnd.x - pBegin.x;
+            this.deltaY = pEnd.y - pBegin.y;
+        }
+
+        public float getDistance() {
+            return pEnd.getDistance(pBegin);
+        }
+
+        public float[] getBeginPoint() {
+            return new float[]{
+                    pBegin.x, pBegin.y
+            };
+        }
+
+        public float[] getEndPoint() {
+            return new float[]{
+                    pEnd.x, pEnd.y
+            };
+        }
+
     }
 
 }

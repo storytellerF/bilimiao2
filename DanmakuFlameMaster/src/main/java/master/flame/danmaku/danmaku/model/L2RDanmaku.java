@@ -20,9 +20,9 @@ package master.flame.danmaku.danmaku.model;
 public class L2RDanmaku extends R2LDanmaku {
 
     public L2RDanmaku(Duration duration) {
-        super(duration); 
+        super(duration);
     }
-    
+
     @Override
     public void layout(IDisplayer displayer, float x, float y) {
         if (mTimer != null) {
@@ -41,7 +41,7 @@ public class L2RDanmaku extends R2LDanmaku {
         }
         this.setVisibility(false);
     }
-    
+
     @Override
     public float[] getRectAtTime(IDisplayer displayer, long time) {
         if (!isMeasured())

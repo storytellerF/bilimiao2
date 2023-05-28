@@ -16,7 +16,7 @@ interface BaseStore<T> : DIAware {
     open fun init(context: Context) {
     }
 
-    fun setState (block: T.() -> Unit) {
+    fun setState(block: T.() -> Unit) {
         stateFlow.value = copyState().apply(block)
     }
 }

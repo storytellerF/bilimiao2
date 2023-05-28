@@ -44,30 +44,34 @@ public class DanmakuFactory {
     public final static long MAX_DANMAKU_DURATION_HIGH_DENSITY = 9000;
 
     public int CURRENT_DISP_WIDTH = 0, CURRENT_DISP_HEIGHT = 0;
-
-    private SpecialDanmaku.ScaleFactor mScaleFactor = null;
-
-    private float CURRENT_DISP_SIZE_FACTOR = 1.0f;
-
     public long REAL_DANMAKU_DURATION = COMMON_DANMAKU_DURATION;
-
     public long MAX_DANMAKU_DURATION = MIN_DANMAKU_DURATION;
-
     public Duration MAX_Duration_Scroll_Danmaku;
-
     public Duration MAX_Duration_Fix_Danmaku;
-
     public Duration MAX_Duration_Special_Danmaku;
-
     public IDisplayer sLastDisp;
+    private SpecialDanmaku.ScaleFactor mScaleFactor = null;
+    private float CURRENT_DISP_SIZE_FACTOR = 1.0f;
     private DanmakuContext sLastConfig;
+
+    protected DanmakuFactory() {
+
+    }
 
     public static DanmakuFactory create() {
         return new DanmakuFactory();
     }
 
-    protected DanmakuFactory() {
-
+    public static void fillLinePathData(BaseDanmaku item, float[][] points, float scaleX,
+                                        float scaleY) {
+        if (item.getType() != BaseDanmaku.TYPE_SPECIAL || points.length == 0
+                || points[0].length != 2)
+            return;
+        for (int i = 0; i < points.length; i++) {
+            points[i][0] *= scaleX;
+            points[i][1] *= scaleY;
+        }
+        ((SpecialDanmaku) item).setLinePathData(points);
     }
 
     public void resetDurationsData() {
@@ -252,18 +256,6 @@ public class DanmakuFactory {
         ((SpecialDanmaku) item).setTranslationData(beginX * scaleX, beginY * scaleY, endX * scaleX,
                 endY * scaleY, translationDuration, translationStartDelay);
         updateSpecicalDanmakuDuration(item);
-    }
-
-    public static void fillLinePathData(BaseDanmaku item, float[][] points, float scaleX,
-                                        float scaleY) {
-        if (item.getType() != BaseDanmaku.TYPE_SPECIAL || points.length == 0
-                || points[0].length != 2)
-            return;
-        for (int i = 0; i < points.length; i++) {
-            points[i][0] *= scaleX;
-            points[i][1] *= scaleY;
-        }
-        ((SpecialDanmaku) item).setLinePathData(points);
     }
 
     /**

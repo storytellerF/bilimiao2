@@ -176,7 +176,7 @@ class PlayerAPI {
         val superscript: String
     )
 
-    data class Dash (
+    data class Dash(
         // 时长，秒
         val duration: Long,
         val min_buffer_time: Double,

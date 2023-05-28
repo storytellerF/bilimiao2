@@ -26,11 +26,11 @@ object BiliUrlMatcher {
         if (a != "") {
             return arrayOf("AV", a)
         }
-        a = matchingID(text,".*://m.bilibili.com/bangumi/play/ep(\\d+).*")
+        a = matchingID(text, ".*://m.bilibili.com/bangumi/play/ep(\\d+).*")
         if (a != "") {
             return arrayOf("EP", a)
         }
-        a = matchingID(text,".*://www.bilibili.com/bangumi/play/ep(\\d+).*")
+        a = matchingID(text, ".*://www.bilibili.com/bangumi/play/ep(\\d+).*")
         if (a != "") {
             return arrayOf("EP", a)
         }
@@ -78,7 +78,6 @@ object BiliUrlMatcher {
     }
 
 
-
     /**
      * 用正则获取视频id
      */
@@ -91,13 +90,15 @@ object BiliUrlMatcher {
         return ""
     }
 
-    fun customString(content: String): String{
-        var result = "[aA][vV](\\d+)".toRegex().replace(content, "[$0](https://www.bilibili.com/video/av$1)")
-        result = "BV([a-zA-Z0-9]+)".toRegex().replace(result, "[$0](https://www.bilibili.com/video/BV$1)")
+    fun customString(content: String): String {
+        var result =
+            "[aA][vV](\\d+)".toRegex().replace(content, "[$0](https://www.bilibili.com/video/av$1)")
+        result = "BV([a-zA-Z0-9]+)".toRegex()
+            .replace(result, "[$0](https://www.bilibili.com/video/BV$1)")
         return result
     }
 
-    fun toUrlLink (view: View, url: String) {
+    fun toUrlLink(view: View, url: String) {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse(
             if ("://" in url) {

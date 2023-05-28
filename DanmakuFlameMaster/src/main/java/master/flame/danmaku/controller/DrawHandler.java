@@ -42,105 +42,51 @@ import tv.cjump.jni.DeviceUtils;
 
 public class DrawHandler extends Handler {
 
+    public static final int START = 1;
+    public static final int UPDATE = 2;
+    public static final int RESUME = 3;
+    public static final int SEEK_POS = 4;
+    public static final int PREPARE = 5;
+    private static final int QUIT = 6;
+    private static final int PAUSE = 7;
+    private static final int SHOW_DANMAKUS = 8;
+    private static final int HIDE_DANMAKUS = 9;
+    private static final int NOTIFY_DISP_SIZE_CHANGED = 10;
+    private static final int NOTIFY_RENDERING = 11;
+    private static final int UPDATE_WHEN_PAUSED = 12;
+    private static final int CLEAR_DANMAKUS_ON_SCREEN = 13;
+    private static final int FORCE_RENDER = 14;
+    private static final long INDEFINITE_TIME = 10000000;
+    private static final int MAX_RECORD_SIZE = 500;
+    private final RenderingState mRenderingState = new RenderingState();
+    public IDrawTask drawTask;
     private DanmakuContext mContext;
     private FrameCallback mFrameCallback;
-
-    public interface Callback {
-        public void prepared();
-
-        public void updateTimer(DanmakuTimer timer);
-
-        public void danmakuShown(BaseDanmaku danmaku);
-
-        public void drawingFinished();
-
-    }
-
-    public static final int START = 1;
-
-    public static final int UPDATE = 2;
-
-    public static final int RESUME = 3;
-
-    public static final int SEEK_POS = 4;
-
-    public static final int PREPARE = 5;
-
-    private static final int QUIT = 6;
-
-    private static final int PAUSE = 7;
-
-    private static final int SHOW_DANMAKUS = 8;
-
-    private static final int HIDE_DANMAKUS = 9;
-
-    private static final int NOTIFY_DISP_SIZE_CHANGED = 10;
-
-    private static final int NOTIFY_RENDERING = 11;
-
-    private static final int UPDATE_WHEN_PAUSED = 12;
-
-    private static final int CLEAR_DANMAKUS_ON_SCREEN = 13;
-
-    private static final int FORCE_RENDER = 14;
-
-    private static final long INDEFINITE_TIME = 10000000;
-
     private long pausedPosition = 0;
-
     private boolean quitFlag = true;
-
     private long mTimeBase;
-
     private boolean mReady;
-
     private Callback mCallback;
-
     private DanmakuTimer timer = new DanmakuTimer();
-
     private BaseDanmakuParser mParser;
-
-    public IDrawTask drawTask;
-
     private IDanmakuViewController mDanmakuView;
-
     private boolean mDanmakusVisible = true;
-
     private AbsDisplayer mDisp;
-
-    private final RenderingState mRenderingState = new RenderingState();
-
-    private static final int MAX_RECORD_SIZE = 500;
-
     private LinkedList<Long> mDrawTimes = new LinkedList<>();
-
     private UpdateThread mThread;
-
     private boolean mUpdateInSeparateThread;
-
     private long mCordonTime = 30;
-
     private long mCordonTime2 = 60;
-
     private long mFrameUpdateRate = 16;
-
     @SuppressWarnings("unused")
     private long mThresholdTime;
-
     private long mLastDeltaTime;
-
     private boolean mInSeekingAction;
-
     private long mDesireSeekingTime;
-
     private long mRemainingTime;
-
     private boolean mInSyncAction;
-
     private boolean mInWaitingState;
-
     private boolean mIdleSleep;
-
     private boolean mNonBlockModeEnable;
 
     public DrawHandler(Looper looper, IDanmakuViewController view, boolean danmakuVisibile) {
@@ -165,10 +111,6 @@ public class DrawHandler extends Handler {
 
     public void enableNonBlockMode(boolean enable) {
         mNonBlockModeEnable = enable;
-    }
-
-    public void setConfig(DanmakuContext config) {
-        mContext = config;
     }
 
     public void setParser(BaseDanmakuParser parser) {
@@ -302,7 +244,7 @@ public class DrawHandler extends Handler {
                 if (mDanmakuView != null) {
                     mDanmakuView.clear();
                 }
-                if(this.drawTask != null) {
+                if (this.drawTask != null) {
                     this.drawTask.requestClear();
                     this.drawTask.requestHide();
                 }
@@ -335,8 +277,8 @@ public class DrawHandler extends Handler {
                         Choreographer.getInstance().removeFrameCallback(mFrameCallback);
                     }
                 }
-                if (what == QUIT){
-                    if (this.drawTask != null){
+                if (what == QUIT) {
+                    if (this.drawTask != null) {
                         this.drawTask.quit();
                     }
                     if (mParser != null) {
@@ -464,14 +406,6 @@ public class DrawHandler extends Handler {
     }
 
     @TargetApi(16)
-    private class FrameCallback implements Choreographer.FrameCallback {
-        @Override
-        public void doFrame(long frameTimeNanos) {
-            sendEmptyMessage(UPDATE);
-        }
-    };
-
-    @TargetApi(16)
     private void updateInChoreographer() {
         if (quitFlag) {
             return;
@@ -554,6 +488,8 @@ public class DrawHandler extends Handler {
             syncTimer(SystemClock.uptimeMillis());
         }
     }
+
+    ;
 
     private void initRenderingConfigs() {
         long averageFrameConsumingTime = 16;
@@ -765,7 +701,7 @@ public class DrawHandler extends Handler {
         if (!mInWaitingState) {
             return;
         }
-        if(drawTask != null) {
+        if (drawTask != null) {
             drawTask.requestClear();
         }
         if (mUpdateInSeparateThread) {
@@ -819,7 +755,7 @@ public class DrawHandler extends Handler {
 
     private synchronized long getAverageRenderingTime() {
         int frames = mDrawTimes.size();
-        if(frames <= 0)
+        if (frames <= 0)
             return 0;
         Long first = mDrawTimes.peekFirst();
         Long last = mDrawTimes.peekLast();
@@ -840,7 +776,7 @@ public class DrawHandler extends Handler {
         }
     }
 
-    public IDisplayer getDisplayer(){
+    public IDisplayer getDisplayer() {
         return mDisp;
     }
 
@@ -893,6 +829,29 @@ public class DrawHandler extends Handler {
 
     public DanmakuContext getConfig() {
         return mContext;
+    }
+
+    public void setConfig(DanmakuContext config) {
+        mContext = config;
+    }
+
+    public interface Callback {
+        public void prepared();
+
+        public void updateTimer(DanmakuTimer timer);
+
+        public void danmakuShown(BaseDanmaku danmaku);
+
+        public void drawingFinished();
+
+    }
+
+    @TargetApi(16)
+    private class FrameCallback implements Choreographer.FrameCallback {
+        @Override
+        public void doFrame(long frameTimeNanos) {
+            sendEmptyMessage(UPDATE);
+        }
     }
 
 }

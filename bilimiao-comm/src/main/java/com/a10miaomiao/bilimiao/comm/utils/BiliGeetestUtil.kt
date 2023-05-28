@@ -55,7 +55,11 @@ class BiliGeetestUtil(
                     gtCallBack.onGTDialogResult(resultBean)
                     gt3GeetestUtils.showSuccessDialog()
                 } catch (e: Exception) {
-                    Toast.makeText(activity, "验证回调错误：${e.message ?: e.toString()}", Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        activity,
+                        "验证回调错误：${e.message ?: e.toString()}",
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                     gt3GeetestUtils.showFailedDialog()
                 }
@@ -163,6 +167,7 @@ class BiliGeetestUtil(
         suspend fun onGTDialogResult(
             result: GT3ResultBean,
         ): Boolean
+
         suspend fun getGTApiJson(): JSONObject?
     }
 }

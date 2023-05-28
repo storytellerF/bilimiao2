@@ -29,7 +29,7 @@ class RegionAPI {
         val params = mutableMapOf(
             "main_ver" to "v3",
             "search_type" to "video",
-            "view_type" to  "hot_rank",
+            "view_type" to "hot_rank",
             "cate_id" to rid.toString(),
             "order" to rankOrder,
             "copy_right" to "-1",

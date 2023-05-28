@@ -1,4 +1,3 @@
-
 package tv.cjump.jni;
 
 import android.annotation.SuppressLint;
@@ -17,7 +16,7 @@ public class NativeBitmapFactory {
 
     static boolean nativeLibLoaded = false;
     static boolean notLoadAgain = false;
-    
+
     public static boolean isInNativeAlloc() {
         return android.os.Build.VERSION.SDK_INT < 11 || (nativeLibLoaded && nativeIntField != null);
     }
@@ -73,7 +72,7 @@ public class NativeBitmapFactory {
     }
 
     public static synchronized void releaseLibs() {
-        boolean loaded =  nativeLibLoaded;
+        boolean loaded = nativeLibLoaded;
         nativeIntField = null;
         nativeLibLoaded = false;
         if (loaded) {
@@ -176,9 +175,9 @@ public class NativeBitmapFactory {
     private static native boolean release();
 
     private static native Bitmap createBitmap(int width, int height, int nativeConfig,
-            boolean hasAlpha);
+                                              boolean hasAlpha);
 
     private static native Bitmap createBitmap19(int width, int height, int nativeConfig,
-            boolean hasAlpha);
+                                                boolean hasAlpha);
 
 }

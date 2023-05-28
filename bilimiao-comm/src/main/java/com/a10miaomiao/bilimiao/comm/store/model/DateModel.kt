@@ -72,7 +72,8 @@ class DateModel() {
      */
     private fun getMonthDate(isLeapYear: Boolean, month: Int): Int {
         if (month in 1..12) {
-            val dates = intArrayOf(31, if (isLeapYear) 29 else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+            val dates =
+                intArrayOf(31, if (isLeapYear) 29 else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
             return dates[month - 1]
         }
         return 30

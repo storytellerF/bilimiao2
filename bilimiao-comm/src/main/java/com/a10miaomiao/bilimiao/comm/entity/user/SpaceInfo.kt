@@ -11,7 +11,7 @@ data class SpaceInfo(
     var coin_archive: Media<ArchiveItem>,
     var like_archive: Media<ArchiveItem>,
     var tab: Tab
-){
+) {
     data class CardInfo(
         val approve: Boolean,
         val article: Int,

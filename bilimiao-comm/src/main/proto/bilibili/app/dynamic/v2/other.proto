@@ -142,7 +142,7 @@ message MdlDynDrawTag {
   // 标签类型
   MdlDynDrawTagType type = 1;
   // 标签详情
-  MdlDynDrawTagItem item  = 2;
+  MdlDynDrawTagItem item = 2;
 }
 
 // 图文标签类型
@@ -365,7 +365,7 @@ message MdlDynUGCSeason {
   // inline播放地址
   string inlineURL = 8;
   // 是否能够自动播放
-  bool  can_play= 9;
+  bool  can_play = 9;
   // 播放按钮
   string play_icon = 10;
   // avid
@@ -955,7 +955,7 @@ message ModuleInteraction {
 // 外露交互模块
 message InteractionItem {
   // 外露模块类型
-  LocalIconType icon_type   = 1;
+  LocalIconType icon_type = 1;
   // 外露模块文案
   repeated Description desc = 2;
   // 外露模块uri相关 根据type不同用法不同
@@ -971,7 +971,7 @@ enum LocalIconType {
   //
   local_icon_comment = 0;
   //
-  local_icon_like    = 1;
+  local_icon_like = 1;
 }
 
 // DynUriType
@@ -1990,7 +1990,7 @@ enum RelationStatus {
 message MixUpListLiveItem {
   // 直播状态
   // 0:未直播 1:直播中
-  bool status  = 1;
+  bool status = 1;
   // 房间号
   int64 room_id = 2;
   // 跳转地址
@@ -2048,7 +2048,7 @@ message DynMixUpListViewMoreReply {
   // 是否展示更多的排序策略
   bool show_more_sort_types = 4;
   // 默认排序策略
-  int32 default_sort_type  = 5;
+  int32 default_sort_type = 5;
 }
 
 

@@ -30,6 +30,23 @@ public class NativeBitmapFactoryTest {
     private static final int BITMAP_HEIGHT = 200;
     private static final String TAG = NativeBitmapFactoryTest.class.getSimpleName();
 
+    private static void appendSize(StringBuilder sb, String prefix, long bytes, String suffix) {
+        String value = String.format(Locale.getDefault(), "%.2f", (float) bytes / BYTES_IN_MEGABYTE);
+        appendValue(sb, prefix, value + " MB", suffix);
+    }
+
+    private static void appendTime(StringBuilder sb, String prefix, long timeMs, String suffix) {
+        appendValue(sb, prefix, timeMs + " ms", suffix);
+    }
+
+    private static void appendNumber(StringBuilder sb, String prefix, long number, String suffix) {
+        appendValue(sb, prefix, number + "", suffix);
+    }
+
+    private static void appendValue(StringBuilder sb, String prefix, String value, String suffix) {
+        sb.append(prefix).append(value).append(suffix);
+    }
+
     public void testLoadLibs() {
         NativeBitmapFactory.loadLibs();
         boolean isInNativeAlloc = NativeBitmapFactory.isInNativeAlloc();
@@ -114,7 +131,6 @@ public class NativeBitmapFactoryTest {
         NativeBitmapFactory.releaseLibs();
     }
 
-
     private void accessBitmap(Bitmap bitmap) {
         boolean result = (bitmap != null && bitmap.getWidth() == BITMAP_WIDTH && bitmap.getHeight() == BITMAP_HEIGHT);
         if (result) {
@@ -139,23 +155,6 @@ public class NativeBitmapFactoryTest {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-    }
-
-    private static void appendSize(StringBuilder sb, String prefix, long bytes, String suffix) {
-        String value = String.format(Locale.getDefault(), "%.2f", (float) bytes / BYTES_IN_MEGABYTE);
-        appendValue(sb, prefix, value + " MB", suffix);
-    }
-
-    private static void appendTime(StringBuilder sb, String prefix, long timeMs, String suffix) {
-        appendValue(sb, prefix, timeMs + " ms", suffix);
-    }
-
-    private static void appendNumber(StringBuilder sb, String prefix, long number, String suffix) {
-        appendValue(sb, prefix, number + "", suffix);
-    }
-
-    private static void appendValue(StringBuilder sb, String prefix, String value, String suffix) {
-        sb.append(prefix).append(value).append(suffix);
     }
 
 }

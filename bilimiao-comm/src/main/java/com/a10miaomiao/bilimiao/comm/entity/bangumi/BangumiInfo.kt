@@ -1,6 +1,6 @@
 package com.a10miaomiao.bilimiao.comm.entity.bangumi
 
-data class BangumiInfo (
+data class BangumiInfo(
     val cover: String,
     val episodes: List<EpisodeInfo>,
     val evaluate: String,

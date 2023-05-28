@@ -119,8 +119,8 @@ object ApiHelper {
         }.toString()
     }
 
-    fun addAccessKeyAndMidToParams(params: MutableMap<String, String?>){
-        BilimiaoCommApp.commApp.loginInfo?.token_info?.let{
+    fun addAccessKeyAndMidToParams(params: MutableMap<String, String?>) {
+        BilimiaoCommApp.commApp.loginInfo?.token_info?.let {
             params["access_key"] = it.access_token
             if (!params.contains("mid")) {
                 params["mid"] = it.mid.toString()
@@ -128,7 +128,7 @@ object ApiHelper {
         }
     }
 
-    fun createParams(vararg pairs: Pair<String, String?>): MutableMap<String, String?>{
+    fun createParams(vararg pairs: Pair<String, String?>): MutableMap<String, String?> {
         val params = mutableMapOf(
             *pairs,
             "appkey" to APP_KEY,

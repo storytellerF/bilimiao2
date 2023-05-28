@@ -17,19 +17,29 @@
 package master.flame.danmaku.danmaku.model.objectpool;
 
 class FinitePool<T extends Poolable<T>> implements Pool<T> {
-    /** Factory used to create new pool objects */
+    /**
+     * Factory used to create new pool objects
+     */
     private final PoolableManager<T> mManager;
 
-    /** Maximum number of objects in the pool */
+    /**
+     * Maximum number of objects in the pool
+     */
     private final int mLimit;
 
-    /** If true, mLimit is ignored */
+    /**
+     * If true, mLimit is ignored
+     */
     private final boolean mInfinite;
 
-    /** Next object to acquire */
+    /**
+     * Next object to acquire
+     */
     private T mRoot;
 
-    /** Number of objects in the pool */
+    /**
+     * Number of objects in the pool
+     */
     private int mPoolCount;
 
     FinitePool(PoolableManager<T> manager) {

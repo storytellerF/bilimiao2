@@ -2,8 +2,8 @@ package com.a10miaomiao.bilimiao.comm.mypage
 
 import androidx.fragment.app.Fragment
 
-fun Fragment.myPageConfig (init: MyPageConfigInfo.() -> Unit): MyPageConfig {
-    return MyPageConfig (this) {
+fun Fragment.myPageConfig(init: MyPageConfigInfo.() -> Unit): MyPageConfig {
+    return MyPageConfig(this) {
         val configInfo = MyPageConfigInfo()
         init.invoke(configInfo)
         configInfo
@@ -11,6 +11,6 @@ fun Fragment.myPageConfig (init: MyPageConfigInfo.() -> Unit): MyPageConfig {
 }
 
 
-fun myMenuItem (init: MenuItemPropInfo.() -> Unit): MenuItemPropInfo {
+fun myMenuItem(init: MenuItemPropInfo.() -> Unit): MenuItemPropInfo {
     return MenuItemPropInfo().apply(init)
 }

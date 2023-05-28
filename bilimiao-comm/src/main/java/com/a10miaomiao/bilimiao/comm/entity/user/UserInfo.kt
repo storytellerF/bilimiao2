@@ -1,4 +1,5 @@
 package com.a10miaomiao.bilimiao.comm.entity.user
+
 /**
 // "mid": 6789810,
 // "name": "10喵喵",
@@ -21,7 +22,7 @@ package com.a10miaomiao.bilimiao.comm.entity.user
 //   "desc": ""
 // }
  */
-data class UserInfo (
+data class UserInfo(
     var mid: Long,
     var name: String,
     var face: String,

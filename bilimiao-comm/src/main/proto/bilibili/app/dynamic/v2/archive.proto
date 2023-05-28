@@ -32,7 +32,7 @@ message MdlDynArchive {
   // 角标，多个角标之前有间距
   repeated VideoBadge badge = 11;
   // 是否能够自动播放
-  bool  can_play= 12;
+  bool  can_play = 12;
   // stype
   VideoType stype = 13;
   // 是否PGC

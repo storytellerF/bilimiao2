@@ -25,10 +25,28 @@ import master.flame.danmaku.danmaku.model.IDisplayer;
 import master.flame.danmaku.danmaku.model.android.Danmakus;
 
 public interface IRenderer {
-    
+
     int NOTHING_RENDERING = 0;
     int CACHE_RENDERING = 1;
     int TEXT_RENDERING = 2;
+
+    void draw(IDisplayer disp, IDanmakus danmakus, long startRenderTime, RenderingState renderingState);
+
+    void clear();
+
+    void clearRetainer();
+
+    void release();
+
+    void setVerifierEnabled(boolean enabled);
+
+    void setCacheManager(ICacheManager cacheManager);
+
+    void setOnDanmakuShownListener(OnDanmakuShownListener onDanmakuShownListener);
+
+    void removeOnDanmakuShownListener();
+
+    void alignBottom(boolean enable);
 
     interface OnDanmakuShownListener {
         void onDanmakuShown(BaseDanmaku danmaku);
@@ -126,7 +144,7 @@ public interface IRenderer {
         }
 
         public void set(RenderingState other) {
-            if(other == null)
+            if (other == null)
                 return;
             lastTotalDanmakuCount = other.lastTotalDanmakuCount;
             r2lDanmakuCount = other.r2lDanmakuCount;
@@ -162,23 +180,5 @@ public interface IRenderer {
         }
 
     }
-
-    void draw(IDisplayer disp, IDanmakus danmakus, long startRenderTime, RenderingState renderingState);
-
-    void clear();
-
-    void clearRetainer();
-
-    void release();
-
-    void setVerifierEnabled(boolean enabled);
-
-    void setCacheManager(ICacheManager cacheManager);
-
-    void setOnDanmakuShownListener(OnDanmakuShownListener onDanmakuShownListener);
-
-    void removeOnDanmakuShownListener();
-
-    void alignBottom(boolean enable);
 
 }

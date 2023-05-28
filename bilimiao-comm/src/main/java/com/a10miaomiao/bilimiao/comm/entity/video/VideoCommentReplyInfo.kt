@@ -32,7 +32,7 @@ data class VideoCommentReplyInfo(
     val reply_control: ReplyControl,
     val state: Int,
     val type: Int
-): Parcelable {
+) : Parcelable {
 
     @Parcelize
     data class Content(
@@ -53,6 +53,6 @@ data class VideoCommentReplyInfo(
     data class ReplyControl(
         val time_desc: String,
         val location: String?,
-    ): Parcelable
+    ) : Parcelable
 
 }

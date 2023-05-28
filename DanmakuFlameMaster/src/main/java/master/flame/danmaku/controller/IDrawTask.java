@@ -34,7 +34,7 @@ public interface IDrawTask {
 
     public void clearDanmakusOnScreen(long currMillis);
 
-	public IDanmakus getVisibleDanmakusOnTime(long time);
+    public IDanmakus getVisibleDanmakusOnTime(long time);
 
     public RenderingState draw(AbsDisplayer displayer);
 
@@ -60,6 +60,10 @@ public interface IDrawTask {
 
     void invalidateDanmaku(BaseDanmaku item, boolean remeasure);
 
+    public void requestHide();
+
+    void requestRender();
+
     public interface TaskListener {
         public void ready();
 
@@ -71,9 +75,5 @@ public interface IDrawTask {
 
         public void onDanmakusDrawingFinished();
     }
-
-    public void requestHide();
-
-    void requestRender();
 
 }

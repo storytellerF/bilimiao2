@@ -4,8 +4,8 @@ import android.net.Uri
 
 object UrlUtil {
 
-    fun autoHttps(url: String) =if ("://" in url) {
-        url.replace("http://","https://")
+    fun autoHttps(url: String) = if ("://" in url) {
+        url.replace("http://", "https://")
     } else {
         "https:$url"
     }

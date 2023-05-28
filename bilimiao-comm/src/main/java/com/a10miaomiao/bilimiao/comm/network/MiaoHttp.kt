@@ -36,14 +36,14 @@ class MiaoHttp(var url: String? = null) {
             requestBuilder.addHeader(key, headers[key]!!)
         }
         requestBuilder.addHeader("user-agent", ApiHelper.USER_AGENT)
-        requestBuilder.addHeader("referer",ApiHelper.REFERER)
+        requestBuilder.addHeader("referer", ApiHelper.REFERER)
 
         if (url?.let { "bilibili.com" in it } == true) {
             requestBuilder.addHeader("env", "prod")
             requestBuilder.addHeader("app-key", "android")
             requestBuilder.addHeader("x-bili-aurora-eid", "UlMFQVcABlAH")
             requestBuilder.addHeader("x-bili-aurora-zone", "sh001")
-            BilimiaoCommApp.commApp.loginInfo?.token_info?.let{
+            BilimiaoCommApp.commApp.loginInfo?.token_info?.let {
                 requestBuilder.addHeader("x-bili-mid", it.mid.toString())
             }
         }
@@ -74,13 +74,14 @@ class MiaoHttp(var url: String? = null) {
         return client.newCall(req).execute()
     }
 
-    suspend fun awaitCall(): Response{
+    suspend fun awaitCall(): Response {
         return suspendCoroutine { continuation ->
             val req = buildRequest()
             client.newCall(req).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     continuation.resumeWithException(e)
                 }
+
                 override fun onResponse(call: Call, response: Response) {
                     continuation.resume(response)
                 }
@@ -109,9 +110,10 @@ class MiaoHttp(var url: String? = null) {
 //    }
 
     companion object {
-        fun request(url: String? = null, init: (MiaoHttp.() -> Unit)? = null) = MiaoHttp(url).apply {
-            init?.invoke(this)
-        }
+        fun request(url: String? = null, init: (MiaoHttp.() -> Unit)? = null) =
+            MiaoHttp(url).apply {
+                init?.invoke(this)
+            }
 
         inline fun <reified T> gsonConverterFactory(): (response: Response) -> T = { response ->
             val jsonStr = response.body!!.string()

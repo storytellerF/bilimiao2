@@ -9,11 +9,12 @@ import java.io.OutputStream;
  * Created by MoiTempete.
  */
 public class IOUtils {
-    public static String getString(InputStream in){
+    public static String getString(InputStream in) {
         byte[] data = getBytes(in);
-        return data == null? null:new String(data);
+        return data == null ? null : new String(data);
     }
-    public static byte[] getBytes(InputStream in){
+
+    public static byte[] getBytes(InputStream in) {
 
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -27,16 +28,20 @@ public class IOUtils {
             return null;
         }
     }
-    public static void closeQuietly(InputStream in){
-    	try {
-    		if(in != null)
-    			in.close();
-		} catch (IOException ignore) {}
+
+    public static void closeQuietly(InputStream in) {
+        try {
+            if (in != null)
+                in.close();
+        } catch (IOException ignore) {
+        }
     }
-    public static void closeQuietly(OutputStream out){
-    	try {
-    		if(out != null)
-    			out.close();
-    	} catch (IOException ignore) {}
+
+    public static void closeQuietly(OutputStream out) {
+        try {
+            if (out != null)
+                out.close();
+        } catch (IOException ignore) {
+        }
     }
 }

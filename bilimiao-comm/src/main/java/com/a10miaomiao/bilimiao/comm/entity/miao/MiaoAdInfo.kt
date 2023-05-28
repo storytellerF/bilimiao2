@@ -3,25 +3,28 @@ package com.a10miaomiao.bilimiao.comm.entity.miao
 /**
  * 视频推荐（广告）
  */
-data class MiaoAdInfo (
+data class MiaoAdInfo(
     var code: Int,
     var msg: String,
     var data: DataBean
-){
+) {
     data class DataBean(
         var ad: AdBean,
         var version: VersionBean,
         var settingList: List<MiaoSettingInfo>
     )
+
     data class AdBean(
         var isShow: Boolean,
         var title: String,
         var link: LinkBean
     )
+
     data class LinkBean(
         var text: String,
         var url: String
     )
+
     data class VersionBean(
         var versionCode: Long,
         var versionName: String,

@@ -11,7 +11,7 @@ data class VideoCommentInfo(
     val root: VideoCommentReplyInfo?,
     val top: Top,
     val upper: Upper
-)  {
+) {
 
     data class Config(
         val showadmin: Int,

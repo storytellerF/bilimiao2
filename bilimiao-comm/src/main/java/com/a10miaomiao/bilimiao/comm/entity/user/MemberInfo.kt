@@ -19,14 +19,14 @@ data class MemberInfo(
     val sign: String,
     val uname: String,
     val vip: Vip
-): Parcelable {
+) : Parcelable {
     @Parcelize
     data class LevelInfo(
         val current_exp: Int,
         val current_level: Int,
         val current_min: Int,
         val next_exp: Int
-    ): Parcelable
+    ) : Parcelable
 
     @Parcelize
     data class Vip(
@@ -36,5 +36,5 @@ data class MemberInfo(
         val vipStatus: Int,
         val vipStatusWarn: String,
         val vipType: Int
-    ): Parcelable
+    ) : Parcelable
 }

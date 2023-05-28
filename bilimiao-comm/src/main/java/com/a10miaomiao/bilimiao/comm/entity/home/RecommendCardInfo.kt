@@ -1,6 +1,6 @@
 package com.a10miaomiao.bilimiao.comm.entity.home
 
-data class RecommendCardInfo (
+data class RecommendCardInfo(
     val card_type: String,
     val card_goto: String,
     val goto: String?,

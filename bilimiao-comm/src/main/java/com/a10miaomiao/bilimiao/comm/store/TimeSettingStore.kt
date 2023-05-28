@@ -26,17 +26,19 @@ class TimeSettingStore(override val di: DI) :
         const val TIME_CHANGE = "TIME_CHANGE"
     }
 
-    data class State (
+    data class State(
         var timeFrom: DateModel,
         var timeTo: DateModel,
         var timeType: Int = TIME_TYPE_CURRENT,
         var rankOrder: String = "click"
     )
 
-    override val stateFlow = MutableStateFlow(State(
-        timeFrom = DateModel(),
-        timeTo = DateModel(),
-    ))
+    override val stateFlow = MutableStateFlow(
+        State(
+            timeFrom = DateModel(),
+            timeTo = DateModel(),
+        )
+    )
 
     private val activity: AppCompatActivity by instance()
 
@@ -47,7 +49,7 @@ class TimeSettingStore(override val di: DI) :
         initState()
     }
 
-    fun initState () {
+    fun initState() {
         val sp = activity.getSharedPreferences(BilimiaoCommApp.APP_NAME, Context.MODE_PRIVATE)
         val timeType = readTimeType(sp)
         setTime(
@@ -114,7 +116,7 @@ class TimeSettingStore(override val di: DI) :
             || state.timeTo.diff(tTo)
         ) {
             setState {
-                timeType= tType
+                timeType = tType
                 timeFrom = tFrom
                 timeTo = tTo
             }

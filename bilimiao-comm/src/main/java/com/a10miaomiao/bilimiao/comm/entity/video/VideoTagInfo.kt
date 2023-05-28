@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class VideoTagInfo (
+data class VideoTagInfo(
     val attribute: Int,
     val cover: String,
     val hated: Int,

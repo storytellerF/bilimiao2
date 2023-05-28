@@ -12,12 +12,14 @@ object DebugMiao {
     private const val TAG = "DebugMiao"
 
     private var _isDebug: Boolean? = null
-    val isDebug: Boolean get() {
-        if (_isDebug == null) {
-            _isDebug = BilimiaoCommApp.commApp.app.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE !== 0
+    val isDebug: Boolean
+        get() {
+            if (_isDebug == null) {
+                _isDebug =
+                    BilimiaoCommApp.commApp.app.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE !== 0
+            }
+            return _isDebug!!
         }
-        return _isDebug!!
-    }
 
     private inline fun Any?.getString(): String {
         return this?.toString() ?: "null"

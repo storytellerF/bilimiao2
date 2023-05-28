@@ -12,19 +12,6 @@ import master.flame.danmaku.danmaku.model.IDrawingCache;
  */
 public abstract class BaseCacheStuffer {
 
-    public static abstract class Proxy {
-        /**
-         * 在弹幕显示前使用新的text,使用新的text
-         * @param danmaku
-         * @param fromWorkerThread 是否在工作(非UI)线程,在true的情况下可以做一些耗时操作(例如更新Span的drawblae或者其他IO操作)
-         * @return 如果不需重置，直接返回danmaku.text
-         */
-        public abstract void prepareDrawing(BaseDanmaku danmaku, boolean fromWorkerThread);
-
-        public abstract void releaseResource(BaseDanmaku danmaku);
-
-    }
-
     protected Proxy mProxy;
 
     public void prepare(BaseDanmaku danmaku, boolean fromWorkerThread) {
@@ -35,6 +22,7 @@ public abstract class BaseCacheStuffer {
 
     /**
      * set paintWidth, paintHeight to danmaku
+     *
      * @param danmaku
      * @param fromWorkerThread
      */
@@ -70,6 +58,20 @@ public abstract class BaseCacheStuffer {
         if (mProxy != null) {
             mProxy.releaseResource(danmaku);
         }
+    }
+
+    public static abstract class Proxy {
+        /**
+         * 在弹幕显示前使用新的text,使用新的text
+         *
+         * @param danmaku
+         * @param fromWorkerThread 是否在工作(非UI)线程,在true的情况下可以做一些耗时操作(例如更新Span的drawblae或者其他IO操作)
+         * @return 如果不需重置，直接返回danmaku.text
+         */
+        public abstract void prepareDrawing(BaseDanmaku danmaku, boolean fromWorkerThread);
+
+        public abstract void releaseResource(BaseDanmaku danmaku);
+
     }
 
 }

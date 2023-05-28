@@ -13,47 +13,17 @@ import master.flame.danmaku.danmaku.model.BaseDanmaku;
 
 public abstract class ViewCacheStuffer<VH extends ViewCacheStuffer.ViewHolder> extends BaseCacheStuffer {
 
-    public static abstract class ViewHolder {
-
-        protected final View itemView;
-
-        public ViewHolder(View itemView) {
-            if (itemView == null) {
-                throw new IllegalArgumentException("itemView may not be null");
-            }
-            this.itemView = itemView;
-        }
-
-        public void measure(int widthMeasureSpec, int heightMeasureSpec) {
-            this.itemView.measure(widthMeasureSpec, heightMeasureSpec);
-        }
-
-        public int getMeasureWidth() {
-            return this.itemView.getMeasuredWidth();
-        }
-
-        public int getMeasureHeight() {
-            return this.itemView.getMeasuredHeight();
-        }
-
-        public void layout(int l, int t, int r, int b) {
-            this.itemView.layout(l, t, r, b);
-        }
-
-        public void draw(Canvas canvas, AndroidDisplayer.DisplayerConfig displayerConfig) {
-            this.itemView.draw(canvas);
-            //TODO: apply displayerConfig
-        }
-    }
-
     public static final int INVALID_TYPE = -1;
     public static final int MEASURE_VIEW_TYPE = -2;
     public static final int DRAW_VIEW_TYPE = -3;
     public static final int CACHE_VIEW_TYPE = -3;
-
     private final int mMaximumWidthPixels;
     private final int mMaximumHeightPixels;
     private SparseArray<List<VH>> mViewHolderArray = new SparseArray();
+    public ViewCacheStuffer() {
+        mMaximumWidthPixels = -1;  // FIXME: get maximum of canvas
+        mMaximumHeightPixels = -1;
+    }
 
     public abstract VH onCreateViewHolder(int viewType);
 
@@ -61,11 +31,6 @@ public abstract class ViewCacheStuffer<VH extends ViewCacheStuffer.ViewHolder> e
 
     public int getItemViewType(int position, BaseDanmaku danmaku) {
         return 0;
-    }
-
-    public ViewCacheStuffer() {
-        mMaximumWidthPixels = -1;  // FIXME: get maximum of canvas
-        mMaximumHeightPixels = -1;
     }
 
     @Override
@@ -141,6 +106,39 @@ public abstract class ViewCacheStuffer<VH extends ViewCacheStuffer.ViewHolder> e
         //TODO: stroke handle displayerConfig
         if (needRestore) {
             canvas.restore();
+        }
+    }
+
+    public static abstract class ViewHolder {
+
+        protected final View itemView;
+
+        public ViewHolder(View itemView) {
+            if (itemView == null) {
+                throw new IllegalArgumentException("itemView may not be null");
+            }
+            this.itemView = itemView;
+        }
+
+        public void measure(int widthMeasureSpec, int heightMeasureSpec) {
+            this.itemView.measure(widthMeasureSpec, heightMeasureSpec);
+        }
+
+        public int getMeasureWidth() {
+            return this.itemView.getMeasuredWidth();
+        }
+
+        public int getMeasureHeight() {
+            return this.itemView.getMeasuredHeight();
+        }
+
+        public void layout(int l, int t, int r, int b) {
+            this.itemView.layout(l, t, r, b);
+        }
+
+        public void draw(Canvas canvas, AndroidDisplayer.DisplayerConfig displayerConfig) {
+            this.itemView.draw(canvas);
+            //TODO: apply displayerConfig
         }
     }
 

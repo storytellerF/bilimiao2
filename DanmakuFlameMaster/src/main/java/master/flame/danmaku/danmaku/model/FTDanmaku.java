@@ -21,10 +21,8 @@ package master.flame.danmaku.danmaku.model;
  */
 public class FTDanmaku extends BaseDanmaku {
 
-    private float x = 0;
-
     protected float y = -1;
-
+    private float x = 0;
     private float[] RECT = null;
 
     private float mLastLeft;

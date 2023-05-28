@@ -12,7 +12,7 @@ message ModuleStat {
   // 评论数
   int64 reply = 3;
   // 点赞拓展信息
-//  LikeInfo like_info = 4;
+  //  LikeInfo like_info = 4;
   // 禁评
   bool no_comment = 5;
   // 禁转

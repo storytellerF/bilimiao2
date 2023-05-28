@@ -1,4 +1,3 @@
-
 package master.flame.danmaku.danmaku.model.android;
 
 import master.flame.danmaku.danmaku.model.IDrawingCache;
@@ -56,13 +55,13 @@ public class DrawingCache implements IDrawingCache<DrawingCacheHolder>, Poolable
     }
 
     @Override
-    public void setNextPoolable(DrawingCache element) {
-        mNextElement = element;
+    public DrawingCache getNextPoolable() {
+        return mNextElement;
     }
 
     @Override
-    public DrawingCache getNextPoolable() {
-        return mNextElement;
+    public void setNextPoolable(DrawingCache element) {
+        mNextElement = element;
     }
 
     @Override

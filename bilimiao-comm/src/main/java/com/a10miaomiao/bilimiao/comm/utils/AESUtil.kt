@@ -13,7 +13,7 @@ object AESUtil {
     private val key = "+d8HjZ"
 //    private val key = "X6udIYkLsCvbSuY7+VYR+A=="
 
-    fun mykey(getS: (Int) -> String): String{
+    fun mykey(getS: (Int) -> String): String {
         val m = getS(R.string.me)
         val mr = m + algorithm
         val e = (opmode - 3).toChar()
@@ -21,11 +21,11 @@ object AESUtil {
         return mr6 + e
     }
 
-    fun messageWordKey(key: String): String{
-        return String(arrayOf(0, 5, 8, 11).map{ key[it] }.toCharArray())
+    fun messageWordKey(key: String): String {
+        return String(arrayOf(0, 5, 8, 11).map { key[it] }.toCharArray())
     }
 
-    fun getKey(key: String,context: Context): SecretKey {
+    fun getKey(key: String, context: Context): SecretKey {
         val k = mykey(context::getString)
         val m = messageWordKey(key)
         val enCodeFormat = Base64.decode(this.key + m + k, Base64.DEFAULT)

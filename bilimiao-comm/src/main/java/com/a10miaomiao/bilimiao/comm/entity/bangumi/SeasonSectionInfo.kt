@@ -1,6 +1,6 @@
 package com.a10miaomiao.bilimiao.comm.entity.bangumi
 
-data class SeasonSectionInfo (
+data class SeasonSectionInfo(
     val main_section: SectionInfo?,
     val section: List<SectionInfo>,
 ) {

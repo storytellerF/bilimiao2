@@ -27,27 +27,24 @@ import master.flame.danmaku.danmaku.model.android.DanmakuContext;
  */
 public abstract class BaseDanmakuParser {
 
-    public interface Listener {
-        void onDanmakuAdd(BaseDanmaku danmaku);
-    }
-
     protected IDataSource<?> mDataSource;
-
     protected DanmakuTimer mTimer;
     protected int mDispWidth;
     protected int mDispHeight;
     protected float mDispDensity;
     protected float mScaledDensity;
-
-    private IDanmakus mDanmakus;
-
     protected IDisplayer mDisp;
     protected DanmakuContext mContext;
     protected Listener mListener;
+    private IDanmakus mDanmakus;
 
-    public BaseDanmakuParser setDisplayer(IDisplayer disp){
+    public IDisplayer getDisplayer() {
+        return mDisp;
+    }
+
+    public BaseDanmakuParser setDisplayer(IDisplayer disp) {
         mDisp = disp;
-    	mDispWidth = disp.getWidth();
+        mDispWidth = disp.getWidth();
         mDispHeight = disp.getHeight();
         mDispDensity = disp.getDensity();
         mScaledDensity = disp.getScaledDensity();
@@ -56,37 +53,34 @@ public abstract class BaseDanmakuParser {
         return this;
     }
 
-    public IDisplayer getDisplayer(){
-        return mDisp;
-    }
-
     public BaseDanmakuParser setListener(Listener listener) {
         mListener = listener;
         return this;
     }
-    
+
     /**
      * decide the speed of scroll-danmakus
+     *
      * @return
      */
     protected float getViewportSizeFactor() {
         return 1 / (mDispDensity - 0.6f);
     }
-    
+
     public BaseDanmakuParser load(IDataSource<?> source) {
         mDataSource = source;
-        return this;
-    }
-    
-    public BaseDanmakuParser setTimer(DanmakuTimer timer) {
-        mTimer = timer;
         return this;
     }
 
     public DanmakuTimer getTimer() {
         return mTimer;
     }
-    
+
+    public BaseDanmakuParser setTimer(DanmakuTimer timer) {
+        mTimer = timer;
+        return this;
+    }
+
     public IDanmakus getDanmakus() {
         if (mDanmakus != null)
             return mDanmakus;
@@ -96,9 +90,9 @@ public abstract class BaseDanmakuParser {
         mContext.mDanmakuFactory.updateMaxDanmakuDuration();
         return mDanmakus;
     }
-    
+
     protected void releaseDataSource() {
-        if(mDataSource!=null)
+        if (mDataSource != null)
             mDataSource.release();
         mDataSource = null;
     }
@@ -112,5 +106,9 @@ public abstract class BaseDanmakuParser {
     public BaseDanmakuParser setConfig(DanmakuContext config) {
         mContext = config;
         return this;
+    }
+
+    public interface Listener {
+        void onDanmakuAdd(BaseDanmaku danmaku);
     }
 }

@@ -40,10 +40,10 @@ public class BiliDanmakuLoader implements ILoader {
     }
 
     public void load(String uri) throws IllegalDataException {
-        try {            
+        try {
             dataSource = new AndroidFileSource(uri);
         } catch (Exception e) {
-        	throw new IllegalDataException(e);
+            throw new IllegalDataException(e);
         }
     }
 

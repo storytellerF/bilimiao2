@@ -8,7 +8,12 @@ import android.database.sqlite.SQLiteOpenHelper
 /**
  * Created by 10喵喵 on 2017/10/24.
  */
-class SearchHistoryDB(context: Context, name: String, factory: SQLiteDatabase.CursorFactory?, version: Int) :
+class SearchHistoryDB(
+    context: Context,
+    name: String,
+    factory: SQLiteDatabase.CursorFactory?,
+    version: Int
+) :
     SQLiteOpenHelper(context, name, factory, version) {
 
     companion object {

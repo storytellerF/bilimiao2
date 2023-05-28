@@ -9,7 +9,8 @@ class AudioAPI {
      * 音频信息
      */
     fun info(id: String) = MiaoHttp.request {
-        url = BiliApiService.biliApi("audio/music-service-c/songs/playing",
+        url = BiliApiService.biliApi(
+            "audio/music-service-c/songs/playing",
             "song_id" to id,
         )
     }

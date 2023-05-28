@@ -4,7 +4,7 @@ data class LoginInfo(
     val token_info: TokenInfo,
     val sso: List<String>?,
     val cookie_info: CookieInfo?,
-){
+) {
 
     data class PasswordLoginInfo(
         val cookie_info: CookieInfo,
@@ -13,7 +13,7 @@ data class LoginInfo(
         val message: String,
         val url: String,
         val token_info: TokenInfo
-    ){
+    ) {
         fun toLoginInfo() = LoginInfo(
             token_info = token_info,
             cookie_info = cookie_info,
@@ -30,7 +30,7 @@ data class LoginInfo(
         val token_info: TokenInfo,
         val sso: List<String>?,
         val cookie_info: CookieInfo?,
-    ){
+    ) {
         fun toLoginInfo() = LoginInfo(
             token_info = token_info,
             cookie_info = cookie_info,
@@ -48,8 +48,8 @@ data class LoginInfo(
         val http_only: Int,
         val name: String,
         val value: String
-    ){
-        fun getValue(domain: String): String{
+    ) {
+        fun getValue(domain: String): String {
             return "$name=$value;Expires=$expires;Domain=$domain;${if (http_only == 1) "HTTPOnly;" else ""}"
         }
     }

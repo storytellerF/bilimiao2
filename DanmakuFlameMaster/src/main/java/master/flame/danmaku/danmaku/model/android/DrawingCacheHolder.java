@@ -1,4 +1,3 @@
-
 package master.flame.danmaku.danmaku.model.android;
 
 import android.annotation.SuppressLint;
@@ -15,7 +14,7 @@ public class DrawingCacheHolder {
     public Canvas canvas;
 
     public Bitmap bitmap;
-    
+
     public Bitmap[][] bitmapArray;
 
     public Object extra;
@@ -56,10 +55,10 @@ public class DrawingCacheHolder {
             mDensity = density;
             bitmap.setDensity(density);
         }
-        if (canvas == null){
+        if (canvas == null) {
             canvas = new Canvas(bitmap);
             canvas.setDensity(density);
-        }else
+        } else
             canvas.setBitmap(bitmap);
     }
 
@@ -95,7 +94,7 @@ public class DrawingCacheHolder {
         int averageWidth = width / xCount;
         int averageHeight = height / yCount;
         final Bitmap[][] bmpArray = new Bitmap[yCount][xCount];
-        if (canvas == null){
+        if (canvas == null) {
             canvas = new Canvas();
             if (mDensity > 0) {
                 canvas.setDensity(mDensity);

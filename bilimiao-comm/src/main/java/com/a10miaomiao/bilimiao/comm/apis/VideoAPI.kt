@@ -10,8 +10,9 @@ class VideoAPI {
     /**
      * 视频信息
      */
-    fun info(id: String, type: String = "AV",) = MiaoHttp.request {
-        url = BiliApiService.biliApp("x/v2/view",
+    fun info(id: String, type: String = "AV") = MiaoHttp.request {
+        url = BiliApiService.biliApp(
+            "x/v2/view",
             (if (type == "AV") "aid" else "bvid") to id,
             "autoplay" to "0",
             "qn" to "32"
@@ -82,7 +83,7 @@ class VideoAPI {
         )
     }
 
-    fun favoriteCreated (
+    fun favoriteCreated(
         aid: String
     ) = MiaoHttp.request {
         val mid = BilimiaoCommApp.commApp.loginInfo?.token_info?.let {

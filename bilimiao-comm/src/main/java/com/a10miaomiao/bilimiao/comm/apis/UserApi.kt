@@ -10,7 +10,8 @@ class UserApi {
      * 个人空间
      */
     fun space(id: String) = MiaoHttp.request {
-        url = BiliApiService.biliApp("x/v2/space",
+        url = BiliApiService.biliApp(
+            "x/v2/space",
             "vmid" to id,
         )
     }
@@ -26,7 +27,8 @@ class UserApi {
      * 获取up主频道的视频列表
      */
     fun upperChanneVideo(mid: String, cid: String, pageNum: Int, pageSize: Int) = MiaoHttp.request {
-        url = "https://api.bilibili.com/x/space/channel/video?mid=$mid&cid=$cid&pn=$pageNum&ps=$pageSize&order=0&jsonp=jsonp"
+        url =
+            "https://api.bilibili.com/x/space/channel/video?mid=$mid&cid=$cid&pn=$pageNum&ps=$pageSize&order=0&jsonp=jsonp"
     }
 
     /**
@@ -40,7 +42,8 @@ class UserApi {
         keyword: String = "",
         order: String = "pubdate",
     ) = MiaoHttp.request {
-        url = BiliApiService.biliApi("x/space/arc/search",
+        url = BiliApiService.biliApi(
+            "x/space/arc/search",
             "mid" to mid,
             "pn" to pageNum.toString(),
             "ps" to pageSize.toString(),
@@ -58,6 +61,7 @@ class UserApi {
     fun medialist() = MiaoHttp.request {
         url = BiliApiService.biliApi("medialist/gateway/base/space")
     }
+
     fun medialist(up_mid: String) = MiaoHttp.request {
         url = BiliApiService.biliApp(
             "x/v2/favorite",
@@ -73,7 +77,6 @@ class UserApi {
             "up_mid" to up_mid
         )
     }
-
 
 
     /**
@@ -99,17 +102,20 @@ class UserApi {
         pageNum: Int,
         pageSize: Int,
     ) = MiaoHttp.request {
-        url = BiliApiService.biliApi("pgc/app/follow/bangumi",
+        url = BiliApiService.biliApi(
+            "pgc/app/follow/bangumi",
             "pn" to pageNum.toString(),
             "ps" to pageSize.toString()
         )
     }
+
     fun followBangumi(
         vmid: String,
         pageNum: Int,
         pageSize: Int,
-    )  = MiaoHttp.request {
-        url = BiliApiService.biliApp("x/v2/space/bangumi",
+    ) = MiaoHttp.request {
+        url = BiliApiService.biliApp(
+            "x/v2/space/bangumi",
             "vmid" to vmid.toString(),
             "pn" to pageNum.toString(),
             "ps" to pageSize.toString(),
@@ -119,7 +125,7 @@ class UserApi {
     /**
      * 历史记录
      */
-    fun videoHistory (
+    fun videoHistory(
         pageNum: Int,
         pageSize: Int,
     ) = MiaoHttp.request {
@@ -134,7 +140,7 @@ class UserApi {
      * web端历史记录
      * 不支持token，需要cookie
      */
-    fun webVideoHistory (
+    fun webVideoHistory(
         max: Long,
         viewAt: Long,
     ) = MiaoHttp.request {
@@ -145,6 +151,7 @@ class UserApi {
             "view_at" to viewAt.toString(),
         )
     }
+
     fun toBePlay(): MiaoHttp {
         return MiaoHttp.request {
             url = BiliApiService.biliApi(
@@ -179,13 +186,14 @@ class UserApi {
         keyword: String = "",
         order: String = "attention"
     ) = MiaoHttp.request {
-            url = BiliApiService.biliApi("x/relation/followings",
+        url = BiliApiService.biliApi(
+            "x/relation/followings",
             "vmid" to mid,
-                "pn" to pageNum.toString(),
-                "ps" to pageSize.toString(),
-                "order_type" to order,
-                "order" to "desc",
-            )
+            "pn" to pageNum.toString(),
+            "ps" to pageSize.toString(),
+            "order_type" to order,
+            "order" to "desc",
+        )
     }
 
 }

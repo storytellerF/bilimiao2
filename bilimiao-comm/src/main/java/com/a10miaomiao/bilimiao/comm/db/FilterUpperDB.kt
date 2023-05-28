@@ -47,7 +47,7 @@ class FilterUpperDB(context: Context) :
     /**
      * 插入数据到数据库
      */
-    fun insert(mid: Long,name: String) {
+    fun insert(mid: Long, name: String) {
         val db = writableDatabase
         //生成ContentValues对象
         val cv = ContentValues()

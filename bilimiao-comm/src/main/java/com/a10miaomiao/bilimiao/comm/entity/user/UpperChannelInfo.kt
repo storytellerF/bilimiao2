@@ -5,13 +5,13 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class UpperChannelInfo(
-    var cid : String,
-    var mid : String,
-    var name : String,
-    var intro : String,
-    var mtime : Long,
-    var count : Int,
-    var cover : String,
+    var cid: String,
+    var mid: String,
+    var name: String,
+    var intro: String,
+    var mtime: Long,
+    var count: Int,
+    var cover: String,
 //        var archives : List<UpperArchives>,
     var isAll: Boolean = false
-): Parcelable
+) : Parcelable

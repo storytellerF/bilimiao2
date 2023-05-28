@@ -6,7 +6,8 @@ class PlayerSourceInfo {
     var acceptList: List<AcceptInfo> = emptyList()
     var duration: Long = 0L
 
-    val description: String get() = acceptList.find { it.quality == quality }?.description ?: "未知清晰度"
+    val description: String
+        get() = acceptList.find { it.quality == quality }?.description ?: "未知清晰度"
 
     var height = 1
     var width = 1

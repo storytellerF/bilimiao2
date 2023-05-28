@@ -47,9 +47,9 @@ public interface IDisplayer {
 
     float getStrokeWidth();
 
-    void setHardwareAccelerated(boolean enable);
-
     boolean isHardwareAccelerated();
+
+    void setHardwareAccelerated(boolean enable);
 
     int getMaximumCacheWidth();
 
@@ -66,11 +66,11 @@ public interface IDisplayer {
 
     void setDanmakuStyle(int style, float[] data);
 
-    void setMargin(int m);
-
     int getMargin();
 
-    void setAllMarginTop(int m);
+    void setMargin(int m);
 
     int getAllMarginTop();
+
+    void setAllMarginTop(int m);
 }

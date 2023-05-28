@@ -39,7 +39,7 @@ message MdlDynPGC {
   // 角标，多个角标之前有间距
   repeated VideoBadge badge = 15;
   // 是否能够自动播放
-  bool  can_play= 16;
+  bool  can_play = 16;
   // season
   PGCSeason season = 17;
   // 播放按钮

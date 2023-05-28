@@ -29,7 +29,7 @@ class BiliGRPCHttp<ReqT, RespT> internal constructor(
         val token = BilimiaoCommApp.commApp.loginInfo?.token_info?.access_token ?: ""
         if (needToken && token.isNotBlank()) {
             addHeader(BiliHeaders.Authorization, BiliHeaders.Identify + " " + token)
-            BilimiaoCommApp.commApp.loginInfo?.token_info?.let{
+            BilimiaoCommApp.commApp.loginInfo?.token_info?.let {
                 addHeader(BiliHeaders.BiliMid, it.mid.toString())
             }
         }
@@ -82,13 +82,14 @@ class BiliGRPCHttp<ReqT, RespT> internal constructor(
         return parseResponse(res)
     }
 
-    suspend fun awaitCall(): RespT{
+    suspend fun awaitCall(): RespT {
         return suspendCoroutine { continuation ->
             val req = buildRequest()
             client.newCall(req).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     continuation.resumeWithException(e)
                 }
+
                 override fun onResponse(call: Call, response: Response) {
                     try {
                         continuation.resume(parseResponse(response))

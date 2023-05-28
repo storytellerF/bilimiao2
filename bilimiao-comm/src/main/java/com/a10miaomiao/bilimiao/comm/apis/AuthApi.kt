@@ -47,7 +47,6 @@ class AuthApi {
     }
 
 
-
     /**
      * 验证码
      */
@@ -63,9 +62,11 @@ class AuthApi {
      * 密码加密密钥
      */
     fun webKey() = MiaoHttp.request {
-        url = BiliApiService.createUrl("https://passport.bilibili.com/x/passport-login/web/key",
+        url = BiliApiService.createUrl(
+            "https://passport.bilibili.com/x/passport-login/web/key",
             "disable_rcmd" to "0",
-            "local_id" to BilimiaoCommApp.commApp.getBilibiliBuvid(),)
+            "local_id" to BilimiaoCommApp.commApp.getBilibiliBuvid(),
+        )
     }
 
     /**
@@ -124,7 +125,7 @@ class AuthApi {
         geeSeccode: String,
         geeValidate: String,
         recaptchaToken: String,
-    ) = MiaoHttp.request{
+    ) = MiaoHttp.request {
         url = "https://passport.bilibili.com/x/safecenter/common/sms/send"
         formBody = ApiHelper.createParams(
             // type ：11
@@ -173,7 +174,7 @@ class AuthApi {
         geeSeccode: String,
         geeValidate: String,
         recaptchaToken: String,
-    ) = MiaoHttp.request{
+    ) = MiaoHttp.request {
         url = "https://passport.bilibili.com/x/safecenter/common/email/send"
         formBody = ApiHelper.createParams(
             "type" to "14",
@@ -212,7 +213,7 @@ class AuthApi {
 
     fun oauth2AccessToken(
         code: String,
-    )  = MiaoHttp.request {
+    ) = MiaoHttp.request {
         url = "https://passport.bilibili.com/x/passport-login/oauth2/access_token"
         formBody = ApiHelper.createParams(
             "disable_rcmd" to "0",
@@ -226,7 +227,8 @@ class AuthApi {
     fun tmpUserInfo(
         tmpCode: String,
     ) = MiaoHttp.request {
-        url = BiliApiService.createUrl("https://passport.bilibili.com/x/safecenter/user/info",
+        url = BiliApiService.createUrl(
+            "https://passport.bilibili.com/x/safecenter/user/info",
             "tmp_code" to tmpCode,
         )
 //        url = "https://passport.bilibili.com/h5-app/passport/risk/verify?tmp_token=67381b8106a9f8c7ee7ea657be75a111&request_id=e6afd2ea2a614236a9ca8935d51772b6&source=risk"
@@ -250,7 +252,8 @@ class AuthApi {
     fun checkQrCode(
         authCode: String
     ) = MiaoHttp.request {
-        url = BiliApiService.createUrl("https://passport.bilibili.com/x/passport-tv-login/qrcode/poll")
+        url =
+            BiliApiService.createUrl("https://passport.bilibili.com/x/passport-tv-login/qrcode/poll")
         formBody = ApiHelper.createParams(
             "local_id" to BilimiaoCommApp.commApp.getBilibiliBuvid(),
             "auth_code" to authCode

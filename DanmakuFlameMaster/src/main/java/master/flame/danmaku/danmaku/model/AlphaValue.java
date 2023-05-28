@@ -1,4 +1,3 @@
-
 package master.flame.danmaku.danmaku.model;
 
 public class AlphaValue {

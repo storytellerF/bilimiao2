@@ -40,7 +40,7 @@ class ImageSaveUtil(
     fun showMemu(context: Context = activity) {
         MaterialAlertDialogBuilder(context)
             .setItems(menuItems) { _, i ->
-                when(i) {
+                when (i) {
                     0 -> downloadAndSaveImage()
                     1 -> copyImageUrl()
                 }
@@ -52,7 +52,8 @@ class ImageSaveUtil(
      * 复制图片链接到剪切板
      */
     private fun copyImageUrl() {
-        val clipboardManager = activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clipboardManager =
+            activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clipData = ClipData.newPlainText("imageUrl", imageUrl)
         clipboardManager.setPrimaryClip(clipData)
         toast("图片链接已复制到剪切板")
@@ -109,11 +110,18 @@ class ImageSaveUtil(
                 return
             } else if (
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(
+                    activity,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ) != PackageManager.PERMISSION_GRANTED
             ) {
                 //判断是否有这个权限
                 // 申请权限: 参数二：权限的数组；参数三：请求码
-                ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
+                ActivityCompat.requestPermissions(
+                    activity,
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                    1
+                )
                 return
             }
             // 判断文件夹是否已经创建
@@ -178,7 +186,8 @@ class ImageSaveUtil(
             //EXTERNAL_CONTENT_URI代表外部存储器，该值不变
             val contentResolver = activity.contentResolver
 
-            val uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+            val uri =
+                contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
             if (uri != null) {
                 //若生成了uri，则表示该文件添加成功
                 //使用流将内容写入该uri中即可

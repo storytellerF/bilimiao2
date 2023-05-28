@@ -87,9 +87,9 @@ public class AndroidFileSource implements IDataSource<InputStream> {
         inStream = null;
     }
 
-	@Override
-	public InputStream data() {
-		return inStream;
-	}
+    @Override
+    public InputStream data() {
+        return inStream;
+    }
 
 }

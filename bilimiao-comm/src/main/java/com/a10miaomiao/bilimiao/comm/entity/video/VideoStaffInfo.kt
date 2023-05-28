@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class VideoStaffInfo (
+data class VideoStaffInfo(
     var mid: String,
     var title: String,
     var face: String,

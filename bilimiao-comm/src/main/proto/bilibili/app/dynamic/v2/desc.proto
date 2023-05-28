@@ -62,13 +62,13 @@ enum DescType {
   // 外露用户
   desc_type_user = 10;
   // 专栏
-  desc_type_cv   = 11;
+  desc_type_cv = 11;
   // 小视频
-  desc_type_vc   = 12;
+  desc_type_vc = 12;
   // 网址
-  desc_type_web  = 13;
+  desc_type_web = 13;
   // 淘宝
-  desc_type_taobao  = 14;
+  desc_type_taobao = 14;
   // 邮箱
   desc_type_mail = 15;
   // 番剧season

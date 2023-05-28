@@ -17,11 +17,10 @@
 package master.flame.danmaku.danmaku.model;
 
 
-
 public class R2LDanmaku extends BaseDanmaku {
-    
+
     protected static final long MAX_RENDERING_TIME = 100;
-    
+
     protected static final long CORDON_RENDERING_TIME = 40;
 
     protected float x = 0;
@@ -107,7 +106,7 @@ public class R2LDanmaku extends BaseDanmaku {
     public int getType() {
         return TYPE_SCROLL_RL;
     }
-    
+
     @Override
     public void measure(IDisplayer displayer, boolean fromWorkerThread) {
         super.measure(displayer, fromWorkerThread);
