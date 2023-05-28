@@ -32,7 +32,7 @@ class ImageSaveUtil(
 
     private val path = Environment.getExternalStorageDirectory().path + "/BiliMiao/bili图片/"
 
-    private val menuItems = arrayOf<String>(
+    private val menuItems = arrayOf(
         "保存图片",
         "复制图片链接",
     )
@@ -94,7 +94,7 @@ class ImageSaveUtil(
                     return false
                 }
             })
-            .submit();
+            .submit()
     }
 
 
@@ -142,7 +142,7 @@ class ImageSaveUtil(
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            toast("保存失败：" + e.message ?: e.toString())
+            toast("保存失败：" + e.message)
         }
     }
 

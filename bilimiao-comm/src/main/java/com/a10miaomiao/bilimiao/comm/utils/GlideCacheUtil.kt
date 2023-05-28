@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Looper
 import android.text.TextUtils
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.cache.ExternalCacheDiskCacheFactory
+import com.bumptech.glide.load.engine.cache. ExternalPreferredCacheDiskCacheFactory
 import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory
 import java.io.File
 import java.math.BigDecimal
@@ -51,7 +51,7 @@ object GlideCacheUtil {
         clearImageMemoryCache(context)
 
         val imageExternalCatchDir =
-            context.externalCacheDir.toString() + ExternalCacheDiskCacheFactory.DEFAULT_DISK_CACHE_DIR
+            context.externalCacheDir.toString() +  ExternalPreferredCacheDiskCacheFactory .DEFAULT_DISK_CACHE_DIR
         deleteFolderFile(imageExternalCatchDir, true)
     }
 
@@ -80,18 +80,15 @@ object GlideCacheUtil {
             try {
                 val file = File(filePath)
                 if (file.isDirectory) {
-                    val files = file.listFiles()
+                    val files = file.listFiles().orEmpty()
                     for (file1 in files) {
                         deleteFolderFile(file1.absolutePath, true)
                     }
                 }
                 if (deleteThisPath) {
-                    if (!file.isDirectory) {
-                        file.delete()
-                    } else {
-                        if (file.listFiles().isEmpty()) {
-                            file.delete()
-                        }
+                    when {
+                        !file.isDirectory -> file.delete()
+                        file.listFiles()?.isEmpty() == true -> file.delete()
                     }
                 }
             } catch (e: java.lang.Exception) {
@@ -141,12 +138,12 @@ object GlideCacheUtil {
     private fun getFolderSize(file: File): Long {
         var size: Long = 0
         try {
-            val fileList: Array<File> = file.listFiles()
+            val fileList = file.listFiles().orEmpty()
             for (aFileList in fileList) {
-                if (aFileList.isDirectory()) {
-                    size = size + getFolderSize(aFileList)
+                size += if (aFileList.isDirectory) {
+                    getFolderSize(aFileList)
                 } else {
-                    size = size + aFileList.length()
+                    aFileList.length()
                 }
             }
         } catch (e: Exception) {

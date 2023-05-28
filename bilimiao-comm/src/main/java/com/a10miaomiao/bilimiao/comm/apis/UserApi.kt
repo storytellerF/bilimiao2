@@ -4,6 +4,7 @@ import com.a10miaomiao.bilimiao.comm.network.ApiHelper
 import com.a10miaomiao.bilimiao.comm.network.BiliApiService
 import com.a10miaomiao.bilimiao.comm.network.MiaoHttp
 
+@Suppress("UNUSED_PARAMETER")
 class UserApi {
 
     /**

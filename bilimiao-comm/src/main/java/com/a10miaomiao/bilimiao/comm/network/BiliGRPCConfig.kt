@@ -16,22 +16,22 @@ object BiliGRPCConfig {
     /**
      * 频道.
      */
-    val channel = "bilibili140";
+    val channel = "bilibili140"
 
     /**
      * 网络状况.
      */
-    val networkType = 2;
+    val networkType = 2
 
     /**
      * 未知.
      */
-    val networkTF = 0;
+    val networkTF = 0
 
     /**
      * 未知.
      */
-    val networkOid = "46007";
+    val networkOid = "46007"
 
     /**
      * 未知.
@@ -42,32 +42,32 @@ object BiliGRPCConfig {
     /**
      * 应用类型.
      */
-    val mobileApp = "android_hd";
+    val mobileApp = "android_hd"
 
     /**
      * 移动平台.
      */
-    val platform = "android_hd";
+    val platform = "android_hd"
 
     /**
      * 产品环境.
      */
-    val envorienment = "prod";
+    val envorienment = "prod"
 
     /**
      * 应用Id.
      */
-    var appId = 1;
+    var appId = 1
 
     /**
      * 国家或地区.
      */
-    val region = "CN";
+    val region = "CN"
 
     /**
      * 语言.
      */
-    val language = "zh";
+    val language = "zh"
 
     /**
      * 获取客户端在Fawkes系统中的信息标头.
@@ -153,15 +153,14 @@ object BiliGRPCConfig {
     }
 
     fun getSystemUserAgent(): String {
-        var userAgent = ""
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        val userAgent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             try {
-                userAgent = WebSettings.getDefaultUserAgent(BilimiaoCommApp.commApp.app)
+                WebSettings.getDefaultUserAgent(BilimiaoCommApp.commApp.app)
             } catch (e: Exception) {
-                userAgent = System.getProperty("http.agent")
+                System.getProperty("http.agent")
             }
         } else {
-            userAgent = System.getProperty("http.agent")
+            System.getProperty("http.agent")
         }
         //调整编码，防止中文出错
         val sb = StringBuffer()
@@ -170,7 +169,7 @@ object BiliGRPCConfig {
         while (i < length) {
             val c = userAgent[i]
             if (c <= '\u001f' || c >= '\u007f') {
-                sb.append(String.format("\\u%04x", c.toInt()))
+                sb.append(String.format("\\u%04x", c.code))
             } else {
                 sb.append(c)
             }

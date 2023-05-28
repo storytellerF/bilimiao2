@@ -4,26 +4,31 @@ package com.a10miaomiao.bilimiao.comm.store.model
 import java.util.Calendar
 import java.util.Date
 
-class DateModel() {
-    var year = 2009
-    var month = 1
-    var date = 1
+class DateModel {
+    private var year = 2009
+    private var month = 1
+    private var date = 1
 
     fun setValue(str: String) {
-        val lenght = str.length
-        year = str.substring(0, lenght - 4).toInt()
-        month = str.substring(lenght - 4, lenght - 2).toInt()
-        date = str.substring(lenght - 2, lenght).toInt()
+        val length = str.length
+        year = str.substring(0, length - 4).toInt()
+        month = str.substring(length - 4, length - 2).toInt()
+        date = str.substring(length - 2, length).toInt()
     }
 
     fun getValue(span: String = "") = "$year$span${fillZero(month)}$span${fillZero(date)}"
 
-    fun getDate() = Date(year - 1900, month - 1, date)
+    private fun getDate() = Calendar.getInstance().apply {
+        set(year - 1900, month - 1, date)
+    }
 
     fun setDate(date: Date): DateModel {
-        year = date.year + 1900
-        month = date.month + 1
-        this.date = date.date
+        val calendar = Calendar.getInstance().apply {
+            time = date
+        }
+        year = calendar.get(Calendar.YEAR) + 1900
+        month = calendar.get(Calendar.MONTH) + 1
+        this.date = calendar.get(Calendar.DAY_OF_MONTH)
         return this
     }
 
@@ -88,8 +93,8 @@ class DateModel() {
      * 根据获取gapCount天后的时间
      */
     fun getTimeByGapCount(gapCount: Int): DateModel {
-        var calendar = Calendar.getInstance()
-        calendar.time = getDate()
+        val calendar = Calendar.getInstance()
+        calendar.set(year - 1900, month - 1, date)
         calendar.add(Calendar.DATE, gapCount)//参数-，换为1则为加1代表在原来时间的基础上减少一天一天;ps:加减月数 小时同加减天数
         return DateModel().setDate(calendar.time)
     }
@@ -98,8 +103,8 @@ class DateModel() {
      * 计算时间间隔
      */
     fun getGapCount(date: DateModel): Int {
-        val startL = getDate().time
-        val endL = date.getDate().time
+        val startL = getDate().time.time
+        val endL = date.getDate().time.time
         return ((endL - startL) / (1000 * 60 * 60 * 24)).toInt()
     }
 

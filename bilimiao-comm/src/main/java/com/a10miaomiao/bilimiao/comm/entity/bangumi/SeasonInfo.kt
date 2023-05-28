@@ -1,7 +1,7 @@
 package com.a10miaomiao.bilimiao.comm.entity.bangumi
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class SeasonInfo(

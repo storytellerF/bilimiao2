@@ -5,6 +5,7 @@ import com.a10miaomiao.bilimiao.comm.network.BiliApiService
 import com.a10miaomiao.bilimiao.comm.network.MiaoHttp
 import java.util.Locale
 
+@Suppress("UNUSED_PARAMETER")
 class HomeApi {
 
     /**

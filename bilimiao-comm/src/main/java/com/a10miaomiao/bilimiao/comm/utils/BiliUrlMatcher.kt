@@ -21,8 +21,7 @@ object BiliUrlMatcher {
      *
      */
     fun findIDByUrl(text: String): Array<String> {
-        var a = ""
-        a = matchingID(text, ".*://www.bilibili.com/video/av(\\d+)")
+        var a = matchingID(text, ".*://www.bilibili.com/video/av(\\d+)")
         if (a != "") {
             return arrayOf("AV", a)
         }
@@ -86,7 +85,7 @@ object BiliUrlMatcher {
         val compile = Pattern.compile(regex)
         val matcher = compile.matcher(text)
         if (matcher.find())
-            return matcher.group(1)//提取匹配到的结果
+            return matcher.group(1).orEmpty()//提取匹配到的结果
         return ""
     }
 

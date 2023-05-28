@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_PARAMETER")
+
 package com.a10miaomiao.bilimiao.comm.utils
 
 import android.content.pm.ApplicationInfo
@@ -16,12 +18,12 @@ object DebugMiao {
         get() {
             if (_isDebug == null) {
                 _isDebug =
-                    BilimiaoCommApp.commApp.app.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE !== 0
+                    BilimiaoCommApp.commApp.app.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
             }
             return _isDebug!!
         }
 
-    private inline fun Any?.getString(): String {
+    private fun Any?.getString(): String {
         return this?.toString() ?: "null"
     }
 
@@ -46,7 +48,6 @@ object DebugMiao {
     fun i(tag: String, msg: String) {  //信息太长,分段打印
         //因为String的length是字符数量不是字节数量所以为了防止中文字符过多，
         //  把4*1024的MAX字节打印长度改为2001字符数
-        var msg = msg
 
     }
 
