@@ -42,8 +42,6 @@ import master.flame.danmaku.danmaku.parser.BaseDanmakuParser;
 import master.flame.danmaku.danmaku.renderer.IRenderer.RenderingState;
 import master.flame.danmaku.danmaku.util.SystemClock;
 
-import static android.R.attr.x;
-
 public class DanmakuSurfaceView extends SurfaceView implements IDanmakuView, IDanmakuViewController, SurfaceHolder.Callback {
 
     public static final String TAG = "DanmakuSurfaceView";

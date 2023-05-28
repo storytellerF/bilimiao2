@@ -1,9 +1,6 @@
 
 package master.flame.danmaku.controller;
 
-import master.flame.danmaku.danmaku.model.Duration;
-import master.flame.danmaku.danmaku.util.SystemClock;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -15,9 +12,11 @@ import java.util.TreeMap;
 
 import master.flame.danmaku.danmaku.model.BaseDanmaku;
 import master.flame.danmaku.danmaku.model.DanmakuTimer;
+import master.flame.danmaku.danmaku.model.Duration;
 import master.flame.danmaku.danmaku.model.IDanmakus;
 import master.flame.danmaku.danmaku.model.android.DanmakuContext;
 import master.flame.danmaku.danmaku.model.android.Danmakus;
+import master.flame.danmaku.danmaku.util.SystemClock;
 
 public class DanmakuFilters {
 

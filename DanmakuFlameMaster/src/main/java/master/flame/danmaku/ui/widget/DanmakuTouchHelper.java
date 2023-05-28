@@ -1,8 +1,6 @@
 package master.flame.danmaku.ui.widget;
 
 import android.graphics.RectF;
-import android.nfc.Tag;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;

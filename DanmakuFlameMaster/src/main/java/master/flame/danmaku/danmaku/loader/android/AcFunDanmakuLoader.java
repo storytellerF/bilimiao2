@@ -1,11 +1,12 @@
 package master.flame.danmaku.danmaku.loader.android;
 
+import android.net.Uri;
+
 import java.io.InputStream;
 
 import master.flame.danmaku.danmaku.loader.ILoader;
 import master.flame.danmaku.danmaku.loader.IllegalDataException;
 import master.flame.danmaku.danmaku.parser.android.JSONSource;
-import android.net.Uri;
 /**
  * Ac danmaku loader
  * @author yrom

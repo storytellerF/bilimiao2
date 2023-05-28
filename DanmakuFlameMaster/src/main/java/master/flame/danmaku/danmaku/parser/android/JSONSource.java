@@ -1,5 +1,11 @@
 package master.flame.danmaku.danmaku.parser.android;
 
+import android.net.Uri;
+import android.text.TextUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,12 +15,6 @@ import java.net.URL;
 
 import master.flame.danmaku.danmaku.parser.IDataSource;
 import master.flame.danmaku.danmaku.util.IOUtils;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import android.net.Uri;
-import android.text.TextUtils;
 
 /**
  * a json file source
