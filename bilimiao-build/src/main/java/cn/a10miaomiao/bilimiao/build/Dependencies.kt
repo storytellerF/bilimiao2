@@ -35,10 +35,12 @@ object Libraries {
     const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
     const val material = "com.google.android.material:material:${Versions.material}"
     const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
-    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    const val lifecycleViewModel =
+        "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     const val work = "androidx.work:work-runtime-ktx:2.7.1"
     const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
-    const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
+    const val navigationFragment =
+        "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val media = "androidx.media:media:${Versions.media}"
     const val media3 = "androidx.media3:media3-common:${Versions.media3}"
     const val media3Ui = "androidx.media3:media3-ui:${Versions.media3}"
@@ -50,13 +52,17 @@ object Libraries {
     const val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
     const val composeUiToolingPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.compose}"
     const val composeMaterial3 = "androidx.compose.material3:material3:1.0.1"
-    const val composeMaterial3WindowSizeClass = "androidx.compose.material3:material3-window-size-class:1.0.1"
+    const val composeMaterial3WindowSizeClass =
+        "androidx.compose.material3:material3-window-size-class:1.0.1"
     const val activityCompose = "androidx.activity:activity-compose:1.3.1"
     const val navigationCompose = "androidx.navigation:navigation-compose:${Versions.navigation}"
     const val glideCompose = "com.github.skydoves:landscapist-glide:2.0.0"
+
     // compose控件
-    const val accompanistSwipeRefresh = "com.google.accompanist:accompanist-swiperefresh:${Versions.accompanist}"
-    const val accompanistDrawablePainter = "com.google.accompanist:accompanist-drawablepainter:${Versions.accompanist}"
+    const val accompanistSwipeRefresh =
+        "com.google.accompanist:accompanist-swiperefresh:${Versions.accompanist}"
+    const val accompanistDrawablePainter =
+        "com.google.accompanist:accompanist-drawablepainter:${Versions.accompanist}"
 
     // 通用库
     const val kotlinxCoroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
@@ -72,7 +78,8 @@ object Libraries {
     // 通用控件
     const val recyclerview = "androidx.recyclerview:recyclerview:1.2.0"
     const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-    const val baseRecyclerViewAdapterHelper = "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4"
+    const val baseRecyclerViewAdapterHelper =
+        "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4"
     const val flexbox = "com.google.android.flexbox:flexbox:3.0.0"
     const val foregroundCompat = "me.zhanghai.android.foregroundcompat:library:1.0.2"
     const val drawer = "com.drakeet.drawer:drawer:1.0.3"
@@ -80,7 +87,8 @@ object Libraries {
     const val dialogX = "com.kongzue.dialogx:DialogX:0.0.47"
     const val dialogXMaterialYou = "com.kongzue.dialogx.style:DialogXMaterialYouStyle:0.0.47"
 
-    const val gsyVideoPlayer = "com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-java:${Versions.gsyVideoPlayer}"
+    const val gsyVideoPlayer =
+        "com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-java:${Versions.gsyVideoPlayer}"
 
     // 其他：极验验证、二维码生成
     const val sensebot = "com.geetest.sensebot:sensebot:4.3.8.1"

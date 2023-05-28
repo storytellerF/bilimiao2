@@ -5,4 +5,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "bilimiao-build"
-include (":bilimiao-build")
+include(":bilimiao-build")
