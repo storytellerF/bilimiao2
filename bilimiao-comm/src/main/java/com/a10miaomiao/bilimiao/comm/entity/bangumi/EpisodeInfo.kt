@@ -16,7 +16,7 @@ data class EpisodeInfo(
     val ep_id: String,
     val index: String,
     val index_title: String,
-    val long_title: String,
+    val long_title: String?,
     val mid: Int,
     val page: Int,
     val pub_real_time: String,
@@ -24,6 +24,6 @@ data class EpisodeInfo(
     val section_type: Int,
     val share_url: String,
     val status: Int,
-    val title: String,
+    val title: String?,
     val vid: String
 ) : Parcelable
