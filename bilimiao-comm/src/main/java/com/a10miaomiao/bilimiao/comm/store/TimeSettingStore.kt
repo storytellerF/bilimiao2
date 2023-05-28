@@ -10,7 +10,7 @@ import com.a10miaomiao.bilimiao.comm.store.model.DateModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.kodein.di.DI
 import org.kodein.di.instance
-import java.util.*
+import java.util.Date
 
 class TimeSettingStore(override val di: DI) :
     ViewModel(), BaseStore<TimeSettingStore.State> {

@@ -1,15 +1,10 @@
 package com.a10miaomiao.bilimiao.comm.apis
 
-import android.util.Base64
 import com.a10miaomiao.bilimiao.comm.BilimiaoCommApp
 import com.a10miaomiao.bilimiao.comm.network.ApiHelper
 import com.a10miaomiao.bilimiao.comm.network.BiliApiService
 import com.a10miaomiao.bilimiao.comm.network.MiaoHttp
 import com.a10miaomiao.bilimiao.comm.utils.RSAUtil
-import java.security.KeyFactory
-import java.security.spec.X509EncodedKeySpec
-import java.util.*
-import javax.crypto.Cipher
 
 class AuthApi {
 

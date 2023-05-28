@@ -1,8 +1,5 @@
 package com.a10miaomiao.bilimiao.comm.utils
 
-import android.R.attr.data
-import android.util.Base64.NO_WRAP
-import android.R.attr.publicKey
 import android.util.Base64
 import java.security.KeyFactory
 import java.security.spec.X509EncodedKeySpec

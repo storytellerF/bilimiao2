@@ -1,7 +1,8 @@
 package com.a10miaomiao.bilimiao.comm.utils
 
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
 object NumberUtil {
     fun converString(num: Long): String {

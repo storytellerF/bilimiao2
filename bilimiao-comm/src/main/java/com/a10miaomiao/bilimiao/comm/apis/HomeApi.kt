@@ -3,7 +3,7 @@ package com.a10miaomiao.bilimiao.comm.apis
 import android.os.Build
 import com.a10miaomiao.bilimiao.comm.network.BiliApiService
 import com.a10miaomiao.bilimiao.comm.network.MiaoHttp
-import java.util.*
+import java.util.Locale
 
 class HomeApi {
 

@@ -1,5 +1,6 @@
-import com.google.protobuf.gradle.*
-import cn.a10miaomiao.bilimiao.build.*
+import cn.a10miaomiao.bilimiao.build.Libraries
+import com.google.protobuf.gradle.id
+import com.google.protobuf.gradle.proto
 import org.apache.tools.ant.taskdefs.condition.Os
 
 plugins {

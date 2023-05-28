@@ -6,7 +6,8 @@ import com.a10miaomiao.bilimiao.comm.BilimiaoCommApp
 import java.io.UnsupportedEncodingException
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
-import java.util.*
+import java.util.Date
+import java.util.UUID
 
 /**
  * Created by 10喵喵 on 2017/4/9.

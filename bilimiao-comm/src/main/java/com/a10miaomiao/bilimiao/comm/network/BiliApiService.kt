@@ -1,6 +1,14 @@
 package com.a10miaomiao.bilimiao.comm.network
 
-import com.a10miaomiao.bilimiao.comm.apis.*
+import com.a10miaomiao.bilimiao.comm.apis.AuthApi
+import com.a10miaomiao.bilimiao.comm.apis.BangumiAPI
+import com.a10miaomiao.bilimiao.comm.apis.CommentApi
+import com.a10miaomiao.bilimiao.comm.apis.HomeApi
+import com.a10miaomiao.bilimiao.comm.apis.PlayerAPI
+import com.a10miaomiao.bilimiao.comm.apis.RegionAPI
+import com.a10miaomiao.bilimiao.comm.apis.SearchApi
+import com.a10miaomiao.bilimiao.comm.apis.UserApi
+import com.a10miaomiao.bilimiao.comm.apis.VideoAPI
 
 object BiliApiService {
     fun createUrl(url: String, vararg pairs: Pair<String, String?>): String {
