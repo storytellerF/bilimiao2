@@ -117,7 +117,7 @@ class MiaoHttp(var url: String? = null) {
 
         inline fun <reified T> gsonConverterFactory(): (response: Response) -> T = { response ->
             val jsonStr = response.body!!.string()
-            Gson().fromJson(jsonStr, object : TypeToken<T>() {}.type)
+            gson.fromJson(jsonStr, object : TypeToken<T>() {}.type)
         }
 
         inline fun <reified T> Response.gson(isDebug: Boolean = false): T {
@@ -125,11 +125,12 @@ class MiaoHttp(var url: String? = null) {
             if (isDebug) {
                 DebugMiao.log(jsonStr)
             }
-            return Gson().fromJson(jsonStr, object : TypeToken<T>() {}.type)
+            return gson.fromJson(jsonStr, object : TypeToken<T>() {}.type)
         }
 
         const val GET = "GET"
         const val POST = "POST"
+        val gson = Gson()
 
     }
 }
