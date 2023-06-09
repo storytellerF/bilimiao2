@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.navigation.NavType
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorDestinationBuilder
 import androidx.viewpager.widget.ViewPager
 import cn.a10miaomiao.miao.binding.android.view._leftPadding
 import cn.a10miaomiao.miao.binding.android.view._rightPadding
@@ -18,8 +20,12 @@ import com.a10miaomiao.bilimiao.comm.*
 import com.a10miaomiao.bilimiao.comm.dsl.addOnDoubleClickTabListener
 import com.a10miaomiao.bilimiao.comm.entity.region.RegionInfo
 import com.a10miaomiao.bilimiao.comm.mypage.*
+import com.a10miaomiao.bilimiao.comm.navigation.FragmentNavigatorBuilder
+import com.a10miaomiao.bilimiao.comm.navigation.MainNavArgs
+import com.a10miaomiao.bilimiao.comm.navigation.openSearchDrawer
 import com.a10miaomiao.bilimiao.page.search.result.VideoResultFragment
 import com.a10miaomiao.bilimiao.store.WindowStore
+import com.a10miaomiao.bilimiao.widget.comm.getScaffoldView
 import com.google.android.material.tabs.TabLayout
 import org.kodein.di.DI
 import org.kodein.di.DIAware
@@ -29,6 +35,22 @@ import splitties.views.dsl.core.verticalLayout
 import splitties.views.dsl.core.wrapContent
 
 class SearchResultFragment : Fragment(), DIAware, MyPage, ViewPager.OnPageChangeListener {
+
+    companion object : FragmentNavigatorBuilder() {
+        override val name = "search.result"
+        override fun FragmentNavigatorDestinationBuilder.init() {
+            argument(MainNavArgs.text) {
+                type = NavType.StringType
+                nullable = true
+            }
+        }
+
+        fun createArguments(text: String): Bundle {
+            return bundleOf(
+                MainNavArgs.text to text
+            )
+        }
+    }
 
     override val pageConfig = myPageConfig {
         title = "搜索\n-\n${viewModel.keyword ?: "无关键字"}"
@@ -41,17 +63,19 @@ class SearchResultFragment : Fragment(), DIAware, MyPage, ViewPager.OnPageChange
         ).apply {
             viewModel.curFragment?.let { addAll(it.menus) }
         }
+        search = SearchConfigInfo(
+            keyword = viewModel.keyword ?: ""
+        )
     }
 
     override fun onMenuItemClick(view: View, menuItem: MenuItemPropInfo) {
         super.onMenuItemClick(view, menuItem)
         when (menuItem.key) {
             MenuKeys.search -> {
-                val bsNav = requireActivity().findNavController(R.id.nav_bottom_sheet_fragment)
-                val args = bundleOf(
-                    MainNavGraph.args.text to viewModel.keyword
-                )
-                bsNav.navigate(MainNavGraph.action.global_to_searchStart, args)
+//                val bsNav = requireActivity().findNavController(R.id.nav_bottom_sheet_fragment)
+//                val args = SearchStartFragment.createArguments(viewModel.keyword ?: "")
+//                bsNav.navigate(SearchStartFragment.actionId, args)
+                requireActivity().getScaffoldView().openSearchDrawer()
             }
             else -> {
                 viewModel.curFragment?.onMenuItemClick(view, menuItem)

@@ -14,7 +14,9 @@ import com.a10miaomiao.bilimiao.MainNavGraph
 import com.a10miaomiao.bilimiao.R
 import com.a10miaomiao.bilimiao.comm.MiaoBindingUi
 import com.a10miaomiao.bilimiao.comm.db.SearchHistoryDB
+import com.a10miaomiao.bilimiao.comm.navigation.MainNavArgs
 import com.a10miaomiao.bilimiao.comm.network.BiliApiService
+import com.a10miaomiao.bilimiao.widget.comm.getScaffoldView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.json.JSONException
@@ -34,6 +36,10 @@ class SearchStartViewModel (
 
     var historyList = mutableListOf<String>()
     var suggestList = mutableListOf<SuggestInfo>()
+
+    val allSearchAction = SearchResultFragment.actionId
+    var selfSearchAction = -1
+    var searchAction = allSearchAction
 
     private val searchHistoryDB = SearchHistoryDB(activity, SearchHistoryDB.DB_NAME, null, 1)
 
@@ -114,12 +120,19 @@ class SearchStartViewModel (
         }
         searchHistoryDB.deleteHistory(keyword)
         searchHistoryDB.insertHistory(keyword)
-        Navigation.findNavController(view).popBackStack()
+
+        activity.getScaffoldView().closeDrawer()
+//        Navigation.findNavController(view).popBackStack()
+
         val nav = activity.findNavController(R.id.nav_host_fragment)
         val args = bundleOf(
-            MainNavGraph.args.text to keyword
+            MainNavArgs.text to keyword
         )
-        nav.navigate(MainNavGraph.action.global_to_searchResult, args)
+        if (searchAction == -1) {
+            nav.navigate(allSearchAction, args)
+        } else {
+            nav.navigate(searchAction, args)
+        }
     }
 
     fun deleteSearchHistory(text: String){

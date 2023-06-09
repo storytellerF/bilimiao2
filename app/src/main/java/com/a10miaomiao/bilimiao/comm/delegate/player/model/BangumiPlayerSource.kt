@@ -42,8 +42,8 @@ class BangumiPlayerSource(
             epid, id, quality, fnval
         )
         return PlayerSourceInfo().also {
-            it.lastPlayCid = res.last_play_cid
-            it.lastPlayTime = res.last_play_time
+            it.lastPlayCid = res.last_play_cid ?: ""
+            it.lastPlayTime = res.last_play_time ?: 0
             it.quality = res.quality
             it.acceptList = res.accept_quality.mapIndexed { index, i ->
                 PlayerSourceInfo.AcceptInfo(i, res.accept_description[index])
@@ -51,7 +51,7 @@ class BangumiPlayerSource(
             val dash = res.dash
             if (dash != null) {
                 it.duration = dash.duration * 1000L
-                val dashSource = DashSource(res.quality, dash)
+                val dashSource = DashSource(res.quality, dash, uposHost)
                 val dashVideo = dashSource.getDashVideo()!!
                 it.height = dashVideo.height
                 it.width = dashVideo.width
@@ -60,12 +60,16 @@ class BangumiPlayerSource(
                 val durl = res.durl!!
                 if (durl.size == 1) {
                     it.duration = durl[0].length * 1000L
-                    it.url = durl[0].url
+                    it.url = if (uposHost.isNotBlank()) {
+                        UrlUtil.replaceHost(durl[0].url, uposHost)
+                    } else { durl[0].url }
                 } else {
                     var duration = 0L
                     it.url = "[concatenating]\n" + durl.joinToString("\n") { d ->
                         duration += d.length * 1000L
-                        d.url
+                        if (uposHost.isNotBlank()) {
+                            UrlUtil.replaceHost(d.url, uposHost)
+                        } else { d.url }
                     }
                     it.duration = duration
                 }
