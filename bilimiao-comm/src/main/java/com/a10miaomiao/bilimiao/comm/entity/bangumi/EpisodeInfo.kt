@@ -11,9 +11,7 @@ data class EpisodeInfo(
     @SerializedName("badge") val badgeText: String,
     @SerializedName("badge_type") val badgeType: Int,
     val bvid: String,
-    val badge: String,
-    val badge_type: Int,
-    val badge_info: EpisodeBadgeInfo,
+    val badge_info: EpisodeBadgeInfo? = null,
     val cid: String,
     val cover: String,
     val ctime: String,
@@ -40,10 +38,6 @@ data class EpisodeInfo(
     val id: String? = null,
     val status: Int? = null,
     val title: String? = null,
-    val pub_real_time: String,
-    val section_id: String,
-    val section_type: Int,
-    val share_url: String,
 ) : Parcelable {
 
     val safeTitle get() = longTitle?.takeIf { it.isNotEmpty() } ?: title ?: indexTitle ?: "-"
