@@ -20,7 +20,7 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -63,6 +63,7 @@ dependencies {
     implementation(Libraries.kodeinDiCompose) // 依赖注入
 
     implementation(Libraries.composeUi)
+    implementation(Libraries.composeMaterialIconsExtended)
     implementation(Libraries.composeMaterial3)
     implementation(Libraries.composeMaterial3WindowSizeClass)
     implementation(Libraries.composeUiToolingPreview)
@@ -81,6 +82,7 @@ dependencies {
     implementation(Libraries.dialogX)
 
     implementation(project(":bilimiao-comm"))
+    implementation(project(":bilimiao-download"))
 
     testImplementation(Libraries.junit)
     androidTestImplementation(Libraries.androidxJunit)

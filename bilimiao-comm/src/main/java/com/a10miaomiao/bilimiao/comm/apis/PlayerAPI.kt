@@ -47,7 +47,7 @@ class PlayerAPI {
      * 获取视频播放地址
      * fnval: 976:flv,1:mp4,4048:dash
      */
-    fun getVideoPalyUrl(
+    suspend fun getVideoPalyUrl(
         avid: String,
         cid: String,
         quality: Int = 64,
@@ -69,7 +69,7 @@ class PlayerAPI {
         val res = MiaoHttp.request {
             url = BiliApiService.biliApi("x/player/playurl", *params.toList().toTypedArray())
             headers = getVideoHeaders(avid)
-        }.call().gson<ResultInfo<PlayurlData>>()
+        }.awaitCall().gson<ResultInfo<PlayurlData>>()
         if (res.code == 0) {
             return res.data
         } else {
@@ -181,7 +181,7 @@ class PlayerAPI {
         val duration: Long,
         val min_buffer_time: Double,
         val video: List<DashItem>,
-        val audio: List<DashItem>,
+        val audio: List<DashItem>?,
     )
 
     data class DashItem(

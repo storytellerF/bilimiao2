@@ -6,6 +6,7 @@ import com.a10miaomiao.bilimiao.comm.BilimiaoCommApp
 import com.a10miaomiao.bilimiao.comm.utils.DebugMiao
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaType
@@ -17,7 +18,6 @@ import okhttp3.Response
 import java.io.IOException
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
 class MiaoHttp(var url: String? = null) {
     private val TAG = "MiaoHttp"
@@ -75,9 +75,13 @@ class MiaoHttp(var url: String? = null) {
     }
 
     suspend fun awaitCall(): Response {
-        return suspendCoroutine { continuation ->
+        return suspendCancellableCoroutine { continuation ->
             val req = buildRequest()
-            client.newCall(req).enqueue(object : Callback {
+            val call = client.newCall(req)
+            continuation.invokeOnCancellation {
+                call.cancel()
+            }
+            call.enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     continuation.resumeWithException(e)
                 }
